@@ -1,3 +1,5 @@
+/* Reset: figures never carry the browser's default 1em 40px margin (live QA 2026-09-24: mobile overflow on Home and Plans photos). */
+figure { margin: 0; }
 /* Addabill shared stylesheet. Loaded on every page after tokens.css.
    Sections: 1 base, 2 layout system, 3 type, 4 buttons and links, 5 header, 6 kit (motif, seal,
    dividers, icons, numerals), 7 components (cards, tables, accordion, bubbles, chips, forms,
