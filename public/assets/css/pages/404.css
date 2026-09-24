@@ -1,0 +1,9 @@
+.notfound { min-height: calc(100vh - var(--header-h)); display: grid; align-items: center; }
+.notfound__spread { align-items: center; }
+.notfound__art .k-daycell { width: min(100%, 520px); margin-inline: auto; filter: drop-shadow(0 14px 32px rgba(43, 38, 34, 0.12)); }
+@media (min-width: 1440px) { .notfound__art .k-daycell { width: min(100%, 680px); margin-inline: 0 auto; } .notfound__text .lead { max-width: 46ch; } .notfound__text h1 { max-width: 14ch; } }
+@media (min-width: 1920px) { .notfound__spread { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); } .notfound__art .k-daycell { width: min(100%, 760px); } .notfound__text .lead { max-width: 52ch; font-size: 1.5rem; } }
+.notfound__art .k-daycell .date { font-size: 9px; }
+.notfound__text .lead { max-width: 40ch; }
+.notfound__art .k-daycell .cell { stroke-width: 0.6; }
+.notfound__art .k-daycell .sh { opacity: 0.1; }

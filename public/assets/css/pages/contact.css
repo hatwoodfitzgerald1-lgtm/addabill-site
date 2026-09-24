@@ -1,0 +1,93 @@
+/* Contact: the hero with the fridge door scene bleeding to the right edge, the one column form beside the
+   address card, hours line and photo, and the hand drawn Dallas map band. Field discipline and the GOV.UK
+   error standard are shared (site.css .form, .field, .field-error, .error-summary). */
+
+/* Hero ---------------------------------------------------------------------------- */
+.contact-hero { position: relative; background: var(--cream); overflow: hidden; }
+.contact-hero__grid { display: grid; gap: var(--sp-5); }
+.contact-hero__copy { padding-top: clamp(2.5rem, 4vw + 1rem, 6rem); padding-bottom: clamp(1.5rem, 2vw + 1rem, 4rem); padding-left: var(--gutter); padding-right: var(--gutter); display: grid; gap: var(--sp-3); align-content: center; }
+@media (min-width: 900px) {
+  .contact-hero__grid { grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: 0; align-items: center; }
+  .contact-hero__copy { padding-left: max(var(--gutter), calc((100vw - var(--wrap-max)) / 2)); padding-right: clamp(2rem, 4vw, 6rem); }
+  .contact-hero__lead { max-width: 52ch; }
+}
+.contact-hero__copy h1 { margin: 0; }
+.contact-hero__lead { max-width: 44ch; margin: 0; font-size: clamp(1.125rem, 1rem + 0.6vw, 1.55rem); }
+.contact-hero__quick { margin: var(--sp-2) 0 0; font-size: var(--fs-body); display: flex; flex-wrap: wrap; gap: 0.5em; align-items: baseline; }
+.contact-hero__scene { position: relative; min-height: clamp(380px, 64vh, 780px); background: var(--oat); overflow: hidden; }
+.contact-hero__scene canvas { width: 100% !important; height: 100% !important; display: block; }
+@media (max-width: 899px) { .contact-hero__scene { min-height: clamp(300px, 50vh, 460px); margin: 0 var(--gutter); border-radius: var(--r-card); } }
+/* the settled DOM fridge (reduced motion, no WebGL, mobile) */
+.fridge { position: absolute; inset: 0; background: linear-gradient(90deg, #F4F0E8 0%, #FBF8F2 45%, #F1ECE2 100%); perspective: 1400px; display: grid; place-items: center; }
+.fridge[hidden] { display: none; }
+.fridge__handle { position: absolute; left: 7%; top: 12%; bottom: 12%; width: 10px; border-radius: 6px; background: linear-gradient(90deg, #C9C1B3, #F2EEE6 40%, #B8B0A2); box-shadow: var(--shadow-1); }
+.fridge__paper { position: relative; width: min(46%, 260px); aspect-ratio: 0.9; background: var(--paper); border-radius: 3px; box-shadow: var(--shadow-2); padding: 10% 7% 7%; transform: rotate(-2deg); display: grid; grid-template-rows: auto 1fr; gap: 5%; }
+.js:not(.rm) .fridge.is-tilt .fridge__paper { transition: transform var(--t-slow) var(--ease-headsup); }
+.fridge__magnet { position: absolute; left: 50%; top: -14px; width: 30px; height: 30px; margin-left: -15px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #F6C55A, var(--marigold) 60%, #C98D14); box-shadow: var(--shadow-2); }
+.fridge__month { margin: 0; font-family: var(--display); font-weight: 600; font-size: clamp(0.95rem, 0.6rem + 1.2vw, 1.4rem); }
+.fridge__grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; align-content: start; }
+.fridge__grid i { position: relative; display: block; aspect-ratio: 1; border: 1px solid var(--hair); border-radius: 2px; }
+.fridge__grid i::before { content: attr(data-n); position: absolute; left: 3px; top: 1px; font-size: 0.48rem; font-weight: 600; color: var(--graphite); }
+.fridge__grid i.pad { border-color: transparent; }
+.fridge__grid i.today { border-color: var(--graphite); }
+.fridge__grid i.today::after { content: ''; position: absolute; top: 2px; right: 2px; width: 2px; height: 6px; border-radius: 1px; background: var(--marigold); }
+.fridge__grid i b { position: absolute; left: 15%; right: 15%; bottom: 12%; height: 32%; background: var(--paper); border: 1px solid var(--graphite); border-top-width: 3px; border-radius: 2px; }
+
+/* The form and the side ------------------------------------------------------------- */
+.contact-main { padding-top: var(--sp-6); }
+.contact-main__grid { display: grid; gap: var(--sp-6); }
+@media (min-width: 1000px) { .contact-main__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(2rem, 5vw, 8rem); align-items: start; } }
+.contact-form { max-width: clamp(560px, 36vw, 880px); }
+.contact-form .field { gap: 0.35em; }
+.contact-form .hint { order: 0; }
+.contact-form .field > label { font-size: var(--fs-body); }
+.contact-form .input, .contact-form .textarea { font-size: clamp(1rem, 0.95rem + 0.3vw, 1.2rem); }
+.contact-form .textarea { min-height: 11em; }
+.contact-form__actions { display: flex; align-items: center; gap: var(--sp-3); flex-wrap: wrap; }
+.contact-form .error-summary { max-width: none; }
+.contact-sent { display: grid; gap: var(--sp-4); align-content: start; padding: clamp(1.5rem, 1rem + 2vw, 3rem); background: var(--paper); border-radius: var(--r-card); box-shadow: var(--shadow-1); max-width: clamp(560px, 36vw, 880px); }
+.contact-sent[hidden] { display: none; }
+.contact-sent .stamp { font-size: clamp(1.05rem, 1rem + 0.4vw, 1.35rem); padding: 0.7em 1.1em; }
+.contact-sent p { margin: 0; max-width: 46ch; }
+.contact-side { display: grid; gap: var(--sp-5); align-content: start; }
+.contact-card { padding: clamp(1.5rem, 1rem + 2vw, 3rem); display: grid; gap: var(--sp-4); }
+.contact-card .eyebrow { margin: 0; }
+.contact-card__address { display: grid; gap: 0.15em; font-size: clamp(1.1rem, 1rem + 0.5vw, 1.5rem); line-height: 1.4; }
+.contact-card__org { font-family: var(--display); font-weight: 600; font-size: clamp(1.4rem, 1.1rem + 1.2vw, 2.3rem); margin-bottom: 0.15em; }
+.contact-card__address a { color: var(--graphite); font-weight: 600; text-decoration: none; width: fit-content; background-image: linear-gradient(currentColor, currentColor); background-repeat: no-repeat; background-size: 0% 1px; background-position: 0 100%; transition: background-size var(--t-base) var(--ease-headsup); }
+.contact-card__address a:hover, .contact-card__address a:focus-visible { background-size: 100% 1px; }
+.contact-card__hours { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 0.7em; align-items: start; padding-top: var(--sp-3); border-top: 1px dashed var(--hair-strong); font-size: var(--fs-body); }
+.contact-card__tick { width: 4px; height: 1.1em; margin-top: 0.2em; border-radius: 2px; background: var(--marigold); }
+.contact-photo { margin: 0; aspect-ratio: 3 / 2; }
+.contact-photo img { width: 100%; height: 100%; object-fit: cover; }
+@media (min-width: 1000px) { .contact-side { position: sticky; top: calc(var(--header-h-condensed) + var(--sp-4)); } }
+
+/* The Dallas map band ----------------------------------------------------------------- */
+.contact-map { background: var(--paper); border-top: 1px solid var(--hair); }
+.contact-map__svg { display: block; width: 100%; height: auto; aspect-ratio: 1600 / 560; font-family: var(--ui); }
+.contact-map .map-road { fill: none; stroke: var(--graphite); stroke-width: 1.2; vector-effect: non-scaling-stroke; }
+.contact-map .map-road--freeway { stroke-width: 2.2; }
+.contact-map .map-road--spring { stroke-width: 2; stroke: var(--graphite); }
+.contact-map .map-river { fill: none; stroke: rgba(107, 96, 88, 0.55); stroke-width: 1; stroke-dasharray: 2 4; vector-effect: non-scaling-stroke; }
+.contact-map .map-downtown rect { fill: var(--paper); stroke: var(--graphite); stroke-width: 1.2; }
+.contact-map .map-arc { fill: none; stroke: var(--graphite); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.contact-map .map-dot { fill: var(--marigold); }
+.contact-map .map-dot-halo { fill: var(--marigold); opacity: 0; transform-box: fill-box; transform-origin: center; }
+.contact-map.is-revealed .map-dot-halo, .rm .contact-map .map-dot-halo { animation: map-halo 6s var(--ease-headsup) 1s infinite; }
+@keyframes map-halo { 0%, 100% { transform: scale(0.7); opacity: 0.22; } 50% { transform: scale(1.15); opacity: 0.08; } }
+.contact-map .map-labels text { font-size: 15px; font-weight: 600; fill: var(--shadow); letter-spacing: 0.06em; text-transform: uppercase; }
+.contact-map .map-labels .map-label--big { font-family: var(--display); font-size: 26px; text-transform: none; letter-spacing: 0; fill: var(--graphite); font-weight: 600; }
+.contact-map .map-labels .map-label--note { font-size: 13px; text-transform: none; letter-spacing: 0.02em; font-weight: 500; }
+.contact-map .map-tag rect:first-child { fill: var(--paper); stroke: var(--graphite); stroke-width: 1.5; }
+.contact-map .map-tag rect + rect { fill: var(--graphite); stroke: none; }
+.contact-map .map-tag__name { font-family: var(--display); font-size: 22px; font-weight: 600; fill: var(--graphite); }
+.contact-map .map-tag__addr { font-size: 14px; font-weight: 600; fill: var(--graphite); }
+.js:not(.rm) .contact-map .map-tag, .js:not(.rm) .contact-map .map-labels, .js:not(.rm) .contact-map .map-downtown, .js:not(.rm) .contact-map .map-dot { opacity: 0; transition: opacity var(--t-base) var(--ease-headsup) 0.9s; }
+.js:not(.rm) .contact-map.is-revealed .map-tag, .js:not(.rm) .contact-map.is-revealed .map-labels, .js:not(.rm) .contact-map.is-revealed .map-downtown, .js:not(.rm) .contact-map.is-revealed .map-dot { opacity: 1; }
+.contact-map__foot { padding: var(--sp-4) 0 var(--sp-5); }
+.contact-map__foot p { margin: 0; }
+@media (max-width: 699px) {
+  .contact-map__svg { aspect-ratio: 720 / 520; }
+  .contact-map .map-labels text { font-size: 19px; }
+  .contact-map .map-labels .map-label--big { font-size: 30px; }
+}

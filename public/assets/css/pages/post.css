@@ -1,0 +1,217 @@
+/* Addabill blog posts: the shared post template (all four routes under /blog/). Loaded after
+   blog.css (which carries the post card). Layout: head spread, full bleed graded hero, the
+   reading grid (prose column + a sticky rail holding the post's scene), full width set pieces
+   (kit figure, pull quotes between hairlines, the checkerboard, the spec table, the ledger,
+   the numeral index), the closing CTA band and "More from the blog". Single column at 375. */
+
+:root { --post-fs: clamp(1.05rem, 0.86rem + 0.5vw, 1.45rem); --post-measure: 68ch; }
+
+/* 1. Head ------------------------------------------------------------------------------ */
+.post-head { padding-top: clamp(1.75rem, 1rem + 2.6vw, 4rem); padding-bottom: clamp(1.5rem, 1rem + 2vw, 3rem); }
+.post-head__grid { display: grid; gap: var(--sp-5); align-items: end; }
+@media (min-width: 900px) { .post-head__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(2rem, 4vw, 6rem); } }
+.post-head__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5em 1em; margin: 0 0 var(--sp-4); font-size: var(--fs-xs); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--shadow); }
+.post-head__meta .cell-numeral { font-size: var(--fs-h3); min-width: 2em; letter-spacing: 0; text-transform: none; color: var(--graphite); }
+.post-head__meta .when::before { content: ''; display: inline-block; width: 3px; height: 0.9em; border-radius: 2px; background: var(--marigold); margin-right: 0.7em; vertical-align: -0.1em; }
+.post-head h1 { font-size: clamp(2.2rem, 1.1rem + 3.6vw, 5.2rem); margin: 0; max-width: 20ch; }
+.post-head__aside { display: grid; gap: var(--sp-4); }
+.post-head__aside .lead { margin: 0; max-width: 46ch; font-size: clamp(1.125rem, 1rem + 0.6vw, 1.75rem); }
+.post-head__facts { margin: 0; display: flex; flex-wrap: wrap; gap: 0.4em 1.2em; font-size: var(--fs-sm); color: var(--shadow); }
+.post-head__facts span { display: inline-flex; align-items: center; gap: 0.5em; }
+.post-head__facts .icon { width: 18px; height: 18px; }
+
+/* 2. Graded hero -------------------------------------------------------------------- */
+.post-hero { padding: 0; }
+.post-hero__media { margin: 0; height: clamp(300px, 62vh, 800px); }
+.post-hero__media picture, .post-hero__media img { width: 100%; height: 100%; }
+.post-hero__media img { object-fit: cover; }
+
+/* 3. The reading grid: prose column and the sticky rail --------------------------------- */
+.post-read { display: grid; gap: var(--sp-6); align-items: start; padding-block: var(--band-y) var(--sp-7); }
+@media (min-width: 900px) { .post-read { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(2rem, 4vw, 5rem); } }
+.post-col { min-width: 0; display: grid; gap: var(--sp-7); align-content: start; }
+.post-prose { font-size: var(--post-fs); line-height: 1.62; max-width: var(--post-measure); }
+.post-prose p { margin: 0 0 1.1em; }
+.post-prose p:last-child { margin-bottom: 0; }
+.post-section h2 { font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.5rem); margin: 0 0 var(--sp-4); max-width: 22ch; }
+.post-open .post-prose p:first-of-type { }
+.post-open .dropcap::first-letter { font-size: 4.2em; padding: 0.1em 0.14em 0 0; line-height: 0.76; }
+@media (min-width: 1800px) {
+  .post-section { display: grid; grid-template-columns: minmax(0, 2.7fr) minmax(0, 8fr); column-gap: var(--sp-5); align-items: start; }
+  .post-section h2 { grid-column: 1; margin-top: 0.15em; font-size: clamp(1.4rem, 1rem + 1vw, 2.1rem); }
+  .post-section .post-section__body { grid-column: 2; }
+  .post-section .post-section__aside { grid-column: 1; margin-top: var(--sp-4); }
+  .post-open { display: block; }
+}
+.post-section__aside { margin-top: var(--sp-5); }
+.post-rail { position: sticky; top: calc(var(--header-h) + 14px); height: calc(100vh - var(--header-h) - 28px); max-height: 840px; min-height: 520px; }
+.post-rail__scene { position: relative; height: 100%; border-radius: var(--r-card); overflow: hidden; background: var(--oat); box-shadow: var(--shadow-1); }
+.post-rail__scene .scene-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.post-rail__scene.is-static { display: grid; place-items: center; padding: var(--sp-5); }
+.post-rail__settled { width: 100%; max-width: 640px; height: auto; background: var(--cream); border-radius: var(--r-card); box-shadow: var(--shadow-1); padding: var(--sp-3); }
+.post-rail__caption { position: absolute; left: var(--sp-4); right: var(--sp-4); bottom: var(--sp-4); margin: 0; font-size: var(--fs-xs); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; color: var(--shadow); pointer-events: none; opacity: 0; transition: opacity var(--t-base) var(--ease-headsup); }
+.post-rail__scene.has-scene .post-rail__caption { opacity: 1; }
+@media (max-width: 899px) { .post-rail { display: none; } }
+@media (min-width: 900px) { .rm .post-kit, .has-static-rail .post-kit { display: none; } }
+
+/* 4. Set pieces ----------------------------------------------------------------------- */
+/* the kit graphic, assembling on scroll */
+.post-kit { padding-block: var(--sp-6) var(--band-y); background: var(--cream); }
+.post-kit__spread { display: grid; gap: var(--sp-5); align-items: center; }
+@media (min-width: 900px) { .post-kit__spread { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(2rem, 4vw, 6rem); } .post-kit__spread--flip { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); } .post-kit__spread--flip > :first-child { order: 2; } }
+.post-kit__figure { margin: 0; background: var(--paper); border-radius: var(--r-card); box-shadow: var(--shadow-1); padding: clamp(0.75rem, 0.5rem + 1vw, 1.5rem); }
+.post-kit__figure svg, .post-kit__figure img { width: 100%; height: auto; display: block; }
+.post-kit__figure svg { overflow: visible; }
+.post-kit__caption { display: grid; gap: var(--sp-3); }
+.post-kit__caption h2 { font-size: var(--fs-h3); margin: 0; }
+.post-kit__caption p { margin: 0; color: var(--shadow); }
+/* the kit classes, scoped to the inlined drawings (the SVG's own style block is stripped when it is inlined) */
+.kit-svg .k-cell { fill: var(--paper); stroke: var(--graphite); stroke-width: 1.5; stroke-opacity: 0.9; }
+.kit-svg .k-cell.k-empty { fill: none; stroke-dasharray: 3 3; stroke-opacity: 0.35; }
+.kit-svg .k-line { fill: none; stroke: var(--graphite); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.kit-svg .k-hair { fill: none; stroke: var(--graphite); stroke-width: 1; stroke-opacity: 0.5; }
+.kit-svg .k-tag .k-slab { fill: var(--paper); stroke: var(--graphite); stroke-width: 1.5; }
+.kit-svg .k-tag .k-stripe { fill: var(--graphite); }
+.kit-svg .k-tag .k-shadow { fill: var(--graphite); opacity: 0.14; }
+.kit-svg .k-arc { fill: none; stroke: var(--graphite); stroke-width: 1.25; stroke-linecap: round; }
+.kit-svg .k-dot { fill: var(--marigold); }
+.kit-svg .k-tick { fill: none; stroke: var(--graphite); stroke-width: 2.25; stroke-linecap: round; stroke-linejoin: round; }
+.kit-svg .k-circle { fill: none; stroke: var(--graphite); stroke-width: 1.75; stroke-linecap: round; }
+.kit-svg .k-num { fill: var(--shadow); }
+.kit-svg .k-num.k-today { fill: var(--graphite); }
+.kit-svg .k-paid { fill: none; stroke: var(--moss); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.kit-svg .k-todaytick { fill: var(--marigold); }
+.kit-svg .k-note { fill: var(--paper); stroke: var(--graphite); stroke-width: 1.5; stroke-linejoin: round; }
+
+/* pull quote between hairlines */
+.post-quote { padding-block: var(--sp-6); }
+.post-quote__in { display: grid; gap: var(--sp-5); justify-items: center; text-align: center; }
+.post-quote__rule { width: 100%; height: 2px; overflow: visible; }
+.post-quote__rule line { stroke: var(--graphite); stroke-width: 1; opacity: 0.6; }
+.post-quote .k-daycell { width: 44px; }
+.post-quote .pull-quote { margin: 0; max-width: 24ch; }
+@media (min-width: 1440px) { .post-quote .pull-quote { max-width: 30ch; } }
+.post-quote .pull-quote.pull-quote--wide { max-width: 30ch; }
+.post-quote__from { margin: 0; font-size: var(--fs-xs); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; color: var(--shadow); }
+
+/* the checkerboard (Post B) */
+.post-check { padding-block: var(--sp-6) var(--band-y); }
+.post-check__head { margin-bottom: var(--sp-5); }
+.post-check__grid { display: grid; gap: 0; border: 1px solid var(--hair); border-radius: var(--r-card); overflow: hidden; }
+@media (min-width: 700px) { .post-check__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.post-check__tile { padding: clamp(1.25rem, 1rem + 1.6vw, 2.75rem); background: var(--paper); border-top: 1px solid var(--hair); display: grid; gap: var(--sp-3); align-content: start; min-height: 100%; }
+.post-check__tile.is-oat { background: var(--oat); }
+.post-check__tile.is-head { background: var(--graphite); color: var(--paper); border-top: 0; }
+.post-check__tile.is-head .post-check__label { color: var(--paper); }
+.post-check__label { margin: 0; font-size: var(--fs-xs); letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; color: var(--shadow); display: inline-flex; align-items: center; gap: 0.6em; white-space: nowrap; }
+.post-check__label .icon { width: 18px; height: 18px; }
+.post-check__tile.is-head .post-check__label { font-family: var(--display); font-size: var(--fs-h3); letter-spacing: -0.01em; text-transform: none; font-weight: 600; }
+.post-check__tile p { margin: 0; font-family: var(--display); font-variation-settings: 'wght' 500, 'SOFT' 100, 'opsz' 36, 'WONK' 0; font-size: clamp(1.1rem, 0.95rem + 0.7vw, 1.7rem); line-height: 1.3; text-wrap: balance; }
+@media (min-width: 700px) { .post-check__tile:nth-child(4n+1), .post-check__tile:nth-child(4n+4) { background: var(--oat); } .post-check__tile:nth-child(4n+2), .post-check__tile:nth-child(4n+3) { background: var(--paper); } .post-check__tile.is-head { background: var(--graphite); } .post-check__tile:nth-child(2n) { border-left: 1px solid var(--hair); } }
+
+/* the spec table band (Post C) */
+.post-table { padding-block: var(--sp-6) var(--band-y); }
+.post-table__spread { display: grid; gap: var(--sp-6); align-items: start; }
+@media (min-width: 1100px) { .post-table__spread { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(2rem, 4vw, 6rem); } .post-table__table { position: sticky; top: calc(var(--header-h) + 24px); } }
+.post-table .spec-table { background: var(--paper); border-radius: var(--r-card); box-shadow: var(--shadow-1); overflow: hidden; }
+.post-table .spec-table th, .post-table .spec-table td { padding: clamp(0.9rem, 0.7rem + 0.8vw, 1.5rem) clamp(0.8rem, 0.5rem + 0.9vw, 1.6rem); }
+.post-table .spec-table thead th { padding-top: 1.2em; }
+.post-table .spec-table tr.is-ours th[scope="row"] { position: relative; }
+.post-table .spec-table tr.is-ours th[scope="row"]::before { content: ''; position: absolute; left: 0; top: 0.9em; bottom: 0.9em; width: 3px; border-radius: 2px; background: var(--marigold); }
+.post-table .spec-table .check { color: var(--moss); font-weight: 600; align-items: flex-start; }
+.post-table .spec-table .no { align-items: flex-start; }
+.post-table .spec-table .check .icon, .post-table .spec-table .no .icon { margin-top: 0.15em; }
+.post-table .spec-table .check span, .post-table .spec-table .no span { color: var(--graphite); font-weight: 500; }
+.post-table__perf { margin: var(--sp-6) 0 var(--sp-4); }
+
+/* the ledger (Post D) */
+.post-ledger { background: var(--paper); border-radius: var(--r-card); box-shadow: var(--shadow-1); padding: clamp(1.25rem, 1rem + 1.2vw, 2.25rem); display: grid; gap: var(--sp-3); position: relative; }
+.post-ledger::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--graphite); border-radius: var(--r-card) var(--r-card) 0 0; }
+.post-ledger__title { margin: 0; font-family: var(--display); font-size: var(--fs-h4); font-weight: 600; }
+.post-ledger ul { list-style: none; margin: 0; padding: 0; display: grid; }
+.post-ledger li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--sp-3); align-items: baseline; padding: 0.7em 0; border-top: 1px solid var(--hair); font-size: var(--fs-sm); }
+.post-ledger li small { display: block; color: var(--shadow); }
+.post-ledger .fig { font-family: var(--display); font-size: var(--fs-h3); font-variation-settings: 'wght' 600, 'SOFT' 100, 'opsz' 72, 'WONK' 0; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.post-ledger .fig.is-quiet { font-family: var(--ui); font-size: var(--fs-sm); font-weight: 600; color: var(--shadow); }
+.post-ledger__note { margin: 0; font-size: var(--fs-xs); color: var(--shadow); }
+
+/* the numeral index of the three days (Post D) */
+.post-days__index { position: relative; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--sp-4); margin: var(--sp-5) 0 var(--sp-6); padding-top: var(--sp-4); }
+.post-days__line { position: absolute; left: 0; right: 0; top: 0; width: 100%; height: 6px; overflow: visible; }
+.post-days__line path { stroke: var(--graphite); stroke-width: 1; fill: none; }
+.post-days__item { display: grid; gap: 0.2em; align-content: start; }
+.post-days__item .settle-num { font-size: clamp(3.4rem, 1.6rem + 6.5vw, 9rem); }
+.post-days__item .post-days__word { font-family: var(--display); font-size: var(--fs-h3); margin: 0; }
+.post-days__item .post-days__lead { margin: 0; color: var(--shadow); font-size: var(--fs-sm); }
+.post-days__item--today .settle-num { color: var(--graphite); }
+.post-days__item .chip-headsup { width: 26px; height: 11px; margin-bottom: 0.4em; }
+
+/* the steps (Post A): numerals hanging beside each step */
+.post-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--sp-7); }
+.post-step { display: grid; gap: var(--sp-3); }
+.post-step .settle-num { font-size: clamp(3rem, 1.4rem + 5vw, 7rem); line-height: 0.9; color: var(--graphite); }
+.post-step h2 { font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.5rem); margin: 0 0 var(--sp-3); max-width: 22ch; }
+@media (min-width: 1800px) {
+  .post-step { grid-template-columns: minmax(0, 2.7fr) minmax(0, 8fr); column-gap: var(--sp-5); align-items: start; }
+  .post-step .settle-num { grid-column: 1; grid-row: 1; }
+  .post-step h2 { grid-column: 2; grid-row: 1; }
+  .post-step .post-prose { grid-column: 2; }
+}
+
+/* a side note beside prose (a paper card with the kit mark) */
+.side-note { background: var(--paper); border-radius: var(--r-card); box-shadow: var(--shadow-1); padding: clamp(1rem, 0.8rem + 1vw, 1.75rem); display: grid; gap: var(--sp-3); font-size: var(--fs-sm); max-width: 40ch; }
+.side-note .k-daycell { width: 40px; }
+.side-note p { margin: 0; }
+.side-note .side-note__title { font-family: var(--display); font-size: var(--fs-h4); font-weight: 600; margin: 0; }
+
+/* the heads-up arc beside a section (Post B) */
+.post-arc { display: grid; gap: var(--sp-3); max-width: 360px; }
+.post-arc .k-arc { width: 100%; height: auto; }
+.post-arc .post-arc__days { display: flex; justify-content: space-between; font-size: var(--fs-xs); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; color: var(--shadow); }
+
+/* a week strip drawn from the kit (Post D closing) */
+.post-week { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 4px; }
+.post-week .d { position: relative; aspect-ratio: 0.9; border: 1px solid var(--hair); border-radius: var(--r-cell); background: var(--paper); padding: 0.35em 0.4em; font-family: var(--display); font-size: var(--fs-sm); font-weight: 600; }
+.post-week .d small { position: absolute; left: 0.4em; bottom: 0.3em; font-family: var(--ui); font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--shadow); font-weight: 600; }
+.post-week .d.is-due { border-color: var(--graphite); }
+.post-week .d.is-due::after { content: ''; position: absolute; top: 6px; right: 6px; width: 4px; height: 12px; border-radius: 2px; background: var(--marigold); }
+.post-week .d .icon { position: absolute; right: 4px; bottom: 4px; width: 18px; height: 18px; stroke: var(--moss); }
+.post-week .d.is-dim { background: transparent; color: var(--shadow); border-style: dashed; }
+
+/* 5. Closing CTA and More from the blog ------------------------------------------------ */
+.post-cta__spread { display: grid; gap: var(--sp-5); align-items: center; }
+@media (min-width: 900px) { .post-cta__spread { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(2rem, 4vw, 6rem); } }
+.post-cta__text { font-size: var(--post-fs); line-height: 1.55; max-width: 60ch; }
+.post-cta__text p { margin: 0; }
+.post-cta__card { display: grid; gap: var(--sp-4); padding: clamp(1.5rem, 1rem + 2vw, 3rem); justify-items: start; }
+.post-cta__card .k-daycell { width: 56px; }
+.post-cta__card p { margin: 0; }
+.post-more__grid { display: grid; gap: var(--sp-5); }
+@media (min-width: 700px) { .post-more__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1.25rem, 2vw, 2.5rem); } }
+.post-more .post-card__body h3 { margin: 0; font-size: clamp(1.25rem, 1rem + 0.9vw, 1.8rem); line-height: 1.12; }
+.post-more .post-card__body h3 a { text-decoration: none; color: inherit; }
+.post-more .post-card .cell-numeral { font-size: var(--fs-h4); min-width: 2em; }
+
+/* 6. Hover treatment support --------------------------------------------------------- */
+.post-prose a.hw-check, .post-cta__text a.hw-check { margin-right: 1.1em; }
+.post-prose a { font-weight: 600; }
+.hover-word { display: inline-block; }
+
+/* 7. Reading blocks without the rail (parts after the scene): the subhead hangs left of the prose from 900px */
+.post-body--rule .post-read { padding-block: var(--sp-6) var(--band-y); }
+@media (min-width: 900px) {
+  .post-read--wide { grid-template-columns: minmax(0, 1fr); }
+  .post-read--wide .post-section { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); column-gap: clamp(2rem, 4vw, 6rem); align-items: start; }
+  .post-read--wide .post-section h2 { grid-column: 1; grid-row: 1; margin-top: 0.1em; }
+  .post-read--wide .post-section .post-section__body { grid-column: 2; grid-row: 1 / span 2; }
+  .post-read--wide .post-section .post-section__aside { grid-column: 1; grid-row: 2; margin-top: var(--sp-5); }
+  .post-read--wide .post-prose { max-width: 72ch; }
+  .post-read--closing { align-items: center; }
+}
+.post-quote__in--inline { display: grid; gap: var(--sp-4); justify-items: start; text-align: left; padding: var(--sp-3) 0; }
+.post-quote__in--inline .pull-quote { max-width: 26ch; font-size: clamp(1.5rem, 1rem + 2vw, 3rem); }
+.post-closing__art { display: grid; gap: var(--sp-5); }
+.post-closing__art .div--reminder { margin: 0; width: min(100%, 340px); }
+.post-table__spread .post-col { gap: var(--sp-5); }
+.post-table__spread .post-section h2 { max-width: 18ch; }
+.post-days { display: grid; gap: var(--sp-7); }

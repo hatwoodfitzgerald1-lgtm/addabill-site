@@ -1,0 +1,164 @@
+/* Home page styles: the hero (The Standing Month), the week in hand mobile hero, the loop band,
+   the value props, How it works, the never does table, the plan cards, the texts shelf, the blog
+   teaser masonry and the Build your month band. Shared components come from site.css. */
+
+/* Hero ------------------------------------------------------------------ */
+.hero {
+  position: relative;
+  min-height: calc(100vh - var(--header-h));
+  min-height: calc(100svh - var(--header-h));
+  overflow: hidden;
+  background: var(--cream);
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+.hero__copy { position: relative; z-index: 3; text-align: center; padding-top: clamp(1.25rem, 5vh, 4rem); pointer-events: none; }
+.hero__copy a, .hero__copy button { pointer-events: auto; }
+.hero h1 { max-width: 20ch; margin: 0 auto var(--sp-3); }
+.hero__sub { max-width: 46ch; margin: 0 auto; }
+.hero__cta { display: grid; justify-items: center; gap: 0.55rem; margin-top: var(--sp-4); }
+.hero__buy { font-size: clamp(1rem, 0.95rem + 0.3vw, 1.2rem); }
+.hero__price { font-size: var(--fs-sm); color: var(--shadow); margin: 0; font-variant-numeric: tabular-nums; }
+.hero__free { margin: 0; font-size: var(--fs-sm); }
+.hero__stage { position: absolute; inset: 0; z-index: 1; }
+.hero__scene { position: absolute; inset: 0; }
+.hero__scene.is-static { background-repeat: no-repeat; background-size: cover; background-position: center bottom; }
+.hero__scene canvas { width: 100% !important; height: 100% !important; display: block; }
+.hero__numeral {
+  position: absolute; z-index: 2; left: 50%; top: 72%; transform: translate(-50%, -50%);
+  font-size: clamp(6rem, 22vh, 18rem); color: var(--graphite); opacity: 0; pointer-events: none;
+  text-shadow: 0 2px 0 rgba(255,255,255,0.6);
+  will-change: transform, opacity;
+}
+.hero__tick { position: absolute; z-index: 2; left: 58%; top: 74%; width: 6px; height: 20px; border-radius: 3px; background: var(--marigold); opacity: 0; pointer-events: none; box-shadow: var(--tag-shadow); }
+.hero__hint { position: absolute; z-index: 2; left: 0; right: 0; bottom: clamp(0.8rem, 2vh, 1.6rem); text-align: center; font-size: var(--fs-xs); letter-spacing: 0.12em; text-transform: uppercase; color: var(--shadow); font-weight: 600; margin: 0; opacity: 0; transition: opacity var(--t-base) var(--ease-headsup); pointer-events: none; }
+.hero__hint.is-on { opacity: 1; }
+.hero__hint::after { content: ''; display: block; width: 1px; height: 14px; margin: 6px auto 0; background: var(--graphite); animation: hint-drop 1.4s cubic-bezier(0.42, 0, 0.14, 1) infinite; }
+@keyframes hint-drop { 0% { transform: scaleY(0); transform-origin: top; } 50% { transform: scaleY(1); transform-origin: top; } 51% { transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
+.loader { z-index: 5; }
+.mobile-hero .loader { display: none; }
+.mobile-hero .hero__stage { display: none; }
+.mobile-hero .hero { min-height: 0; display: block; }
+.mobile-hero .hero__copy { padding-top: clamp(1rem, 3vh, 2rem); }
+.mobile-hero .hero h1 { margin-bottom: var(--sp-2); }
+.mobile-hero .hero__cta { margin-top: var(--sp-3); }
+
+/* The week in hand (mobile hero) */
+.week-hand { position: relative; z-index: 2; padding: var(--sp-5) 0 var(--sp-4); display: grid; gap: var(--sp-4); }
+.mobile-hero .week-hand[hidden] { display: grid; }
+.week-hand__scroller { overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none; perspective: 900px; padding: 12px var(--gutter) 18px; margin: 0; -webkit-overflow-scrolling: touch; }
+.week-hand__scroller::-webkit-scrollbar { display: none; }
+.week-hand__weeks { display: flex; gap: 14px; margin: 0; padding: 0; }
+.wh-week { flex: none; width: calc(100vw - 2 * var(--gutter)); scroll-snap-align: center; scroll-snap-stop: always; }
+.wh-week__name { font-size: var(--fs-xs); letter-spacing: 0.12em; text-transform: uppercase; color: var(--shadow); font-weight: 600; margin: 0 0 8px; display: flex; justify-content: space-between; }
+.wh-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin: 0; padding: 0; list-style: none; transform-style: preserve-3d; transform: rotateX(16deg); transform-origin: 50% 100%; }
+.wh-day { position: relative; aspect-ratio: 0.82; background: var(--paper); border: 1px solid var(--hair); border-radius: 4px; padding: 5px 4px; font-size: 0.75rem; font-weight: 600; font-variant-numeric: tabular-nums; transform-style: preserve-3d; box-shadow: var(--tag-shadow); }
+.wh-day.dim { background: #F3EBDD; color: var(--shadow); box-shadow: none; }
+.wh-day.today { border-color: var(--graphite); }
+.wh-day.today::after { content: ''; position: absolute; top: 5px; right: 5px; width: 3px; height: 10px; border-radius: 2px; background: var(--marigold); }
+.wh-day .wh-tag { position: absolute; left: 2px; right: 2px; bottom: 5px; font-size: 0.56rem; line-height: 1.05; padding: 3px 2px 2px; white-space: normal; text-align: center; justify-content: center; transform-origin: 50% 100%; transform: rotateX(-16deg) translateZ(8px); backface-visibility: hidden; }
+.wh-day .wh-tag::before { top: -1px; }
+.js:not(.rm) .wh-day .wh-tag { opacity: 0; transform: rotateX(-16deg) translateZ(8px) translateY(-34px); }
+.js:not(.rm) .week-hand.is-landed .wh-day .wh-tag, .rm .wh-day .wh-tag { opacity: 1; transform: rotateX(-16deg) translateZ(8px) translateY(0); }
+.week-hand__phone { justify-self: end; margin-right: var(--gutter); width: min(78%, 300px); }
+.wh-phone { background: var(--graphite); border-radius: 22px; padding: 8px; box-shadow: var(--shadow-2); }
+.wh-phone__bar { display: flex; justify-content: space-between; color: var(--paper); font-size: 0.72rem; font-weight: 600; padding: 4px 10px 8px; }
+.wh-phone__screen { position: relative; background: var(--cream); border-radius: 14px; padding: 10px; min-height: 96px; display: grid; align-content: end; }
+.wh-phone__date { position: absolute; left: 0; right: 0; top: 14px; margin: 0; text-align: center; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--shadow); transition: opacity var(--t-base) var(--ease-headsup); }
+.js:not(.rm) .week-hand.is-delivered .wh-phone__date, .rm .wh-phone__date { opacity: 0.35; }
+.wh-phone__bubble { position: relative; margin-top: 30px; background: var(--paper); border-radius: 14px 14px 14px 4px; padding: 0.7em 0.8em; font-size: 0.8rem; line-height: 1.4; color: var(--graphite); transform-origin: 0 100%; box-shadow: var(--shadow-1); }
+.js:not(.rm) .wh-phone__bubble { opacity: 0; transform: translateY(8px) scale(0.96); transition: opacity var(--t-base) var(--ease-headsup), transform var(--t-base) var(--ease-headsup); }
+.js:not(.rm) .week-hand.is-delivered .wh-phone__bubble, .rm .wh-phone__bubble { opacity: 1; transform: none; }
+.wh-chip { position: absolute; left: 0; top: 0; opacity: 0; z-index: 4; pointer-events: none; }
+
+/* Loop band --------------------------------------------------------------- */
+.loop-band { min-height: clamp(520px, 82vh, 960px); display: grid; align-items: center; background: var(--oat); }
+.loop-band__media { position: absolute; inset: 0; }
+.loop-band__media video { width: 100%; height: 100%; object-fit: cover; }
+.loop-band__inner { position: relative; z-index: 2; padding: var(--band-y) 0; display: flex; }
+.loop-band__card { width: min(100%, 620px); padding: clamp(1.5rem, 1rem + 2.5vw, 3.5rem); }
+.loop-band__card h2 { font-size: clamp(1.7rem, 1rem + 2.2vw, 3rem); }
+@media (min-width: 1440px) { .loop-band__card { width: min(100%, 700px); } }
+
+/* Value props ----------------------------------------------------------------- */
+.props__grid { display: grid; gap: var(--sp-5); }
+@media (min-width: 800px) { .props__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1.5rem, 3vw, 4.5rem); } }
+.prop { border-top: 1.5px dashed var(--hair-strong); padding-top: var(--sp-4); }
+.prop .icon { margin-bottom: var(--sp-3); }
+.prop h3 { font-size: var(--fs-h3); }
+.prop p { max-width: 52ch; }
+
+/* How it works --------------------------------------------------------------- */
+.hiw__steps { position: relative; display: grid; gap: var(--sp-6) var(--sp-5); padding-top: var(--sp-5); }
+@media (min-width: 700px) { .hiw__steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .hiw__steps { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(1.5rem, 3vw, 5rem); } }
+.hiw__line { position: absolute; left: 0; right: 0; top: 0; width: 100%; height: 10px; overflow: visible; }
+.hiw__line path { stroke: var(--graphite); stroke-width: 1; fill: none; vector-effect: non-scaling-stroke; }
+.hiw__step { position: relative; }
+.hiw__step::before { content: ''; position: absolute; left: 0; top: calc(-1 * var(--sp-5) - 4px); width: 1px; height: 18px; background: var(--graphite); }
+.hiw__step .numeral-index { display: block; font-size: clamp(4.5rem, 2rem + 8vw, 11rem); margin-bottom: var(--sp-2); }
+.hiw__step h3 { font-size: var(--fs-h3); margin-bottom: var(--sp-2); }
+.hiw__step p { max-width: 36ch; }
+
+/* Never does --------------------------------------------------------------------- */
+.never__spread { align-items: start; }
+.never__table th[scope="row"] { font-size: clamp(1.05rem, 0.9rem + 0.6vw, 1.5rem); }
+.never__table .no, .never__table .check { align-items: flex-start; }
+.never__table .no .icon { margin-top: 0.15em; }
+.never__table .check { font-weight: 400; }
+.never__table .check .icon { margin-top: 0.2em; }
+.never__photo { position: sticky; top: calc(var(--header-h) + var(--sp-4)); aspect-ratio: 3 / 2; width: 100%; }
+.never__photo img { width: 100%; height: 100%; object-fit: cover; }
+@media (max-width: 899px) { .never__photo { position: static; } }
+
+/* Plan cards ------------------------------------------------------------------------- */
+.plans__grid { display: grid; gap: var(--sp-5); }
+@media (min-width: 700px) { .plans__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1.5rem, 3vw, 4rem); } }
+.plans .price { display: flex; align-items: baseline; gap: 0.5em; flex-wrap: wrap; }
+.plans .price .per { font-size: var(--fs-body); }
+.plans__compare { margin-top: var(--sp-5); }
+
+/* Texts shelf ------------------------------------------------------------------------- */
+.shelf__track { align-items: stretch; }
+.shelf__track li { width: min(84vw, 380px); display: flex; }
+.shelf__track .bubble { max-width: none; width: 100%; }
+@media (min-width: 1100px) { .shelf__track li { width: calc((100% - 4 * var(--sp-4)) / 4.4); min-width: 300px; } }
+
+/* Blog teaser masonry ------------------------------------------------------------------ */
+.masonry { display: grid; gap: var(--sp-5); }
+@media (min-width: 700px) { .masonry { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1100px) {
+  .masonry { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: clamp(1.25rem, 2vw, 2.5rem); }
+  .post-card--a { grid-column: span 5; }
+  .post-card--b { grid-column: span 7; }
+  .post-card--c { grid-column: span 7; }
+  .post-card--d { grid-column: span 5; }
+  .post-card--b .post-card__media, .post-card--c .post-card__media { aspect-ratio: 16 / 8; }
+}
+.post-card { display: flex; flex-direction: column; padding: 0; text-decoration: none; color: var(--graphite); overflow: hidden; }
+.post-card__media { margin: 0; aspect-ratio: 3 / 2; }
+.post-card__media img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--t-slow) var(--ease-headsup); }
+.post-card:hover .post-card__media img, .post-card:focus-visible .post-card__media img { transform: scale(1.03); }
+.post-card__body { padding: var(--sp-5); display: grid; gap: var(--sp-3); align-content: start; }
+.post-card__body h3 { margin: 0; font-size: clamp(1.3rem, 1rem + 1vw, 1.9rem); }
+.post-card__body p { margin: 0; color: var(--graphite); }
+.post-card .cell-numeral { font-size: var(--fs-h4); min-width: 2em; }
+.post-card:hover .link, .post-card:focus-visible .link { background-size: 100% 1px; }
+.post-card:hover .link::after, .post-card:focus-visible .link::after { opacity: 1; transform: scale(1); }
+
+/* Build your month band ---------------------------------------------------------------- */
+.build-band__spread { align-items: center; }
+.build-band__text { max-width: 60ch; }
+.build-band__art { perspective: 1200px; display: grid; justify-items: center; padding: var(--sp-5) 0; }
+.mini-standing-month { position: relative; width: min(100%, 560px); transform: rotateX(38deg) rotateZ(-6deg); transform-style: preserve-3d; }
+@media (min-width: 900px) { .build-band__art { justify-items: end; } .mini-standing-month { width: min(100%, 720px); } }
+@media (min-width: 1920px) { .mini-standing-month { width: min(100%, 880px); } .msm-grid i::before { font-size: 1rem; } .msm-grid .tag { font-size: 0.78rem; } }
+.msm-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; transform-style: preserve-3d; }
+.msm-grid i { position: relative; display: block; aspect-ratio: 1; background: var(--paper); border: 1px solid var(--hair); border-radius: 4px; box-shadow: var(--shadow-1); transform-style: preserve-3d; }
+.msm-grid i::before { content: attr(data-n); position: absolute; left: 8px; top: 6px; font-size: 0.8rem; font-weight: 600; color: var(--graphite); }
+.msm-grid i.dim { background: #F3EBDD; box-shadow: none; }
+.msm-grid i.dim::before { color: var(--shadow); }
+.msm-grid i.today { border-color: var(--graphite); }
+.msm-grid i.today::after { content: ''; position: absolute; top: 6px; right: 6px; width: 4px; height: 12px; border-radius: 2px; background: var(--marigold); }
+.msm-grid .tag { position: absolute; left: 6px; right: 6px; bottom: 8px; justify-content: center; font-size: 0.62rem; padding: 4px 3px 3px; white-space: normal; text-align: center; line-height: 1.05; transform-origin: 50% 100%; transform: rotateX(-38deg) translateZ(10px); }
+.mini-standing-month .k-arc { position: absolute; left: 10%; top: -34px; width: 44%; height: auto; transform: translateZ(30px); }

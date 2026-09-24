@@ -1,0 +1,176 @@
+/* Plans page (the store): the head, the two small months scene, the plan cards, the cost strip, the
+   comparison table with the product shots, the FAQ over the atmosphere still, the identity card.
+   Shared components come from site.css. Also used by /cart for the dimmed scene and the DOM months. */
+
+/* Head ------------------------------------------------------------------------ */
+.plans-head { padding-bottom: var(--sp-5); }
+.plans-head__grid { display: grid; gap: var(--sp-4); align-items: end; }
+@media (min-width: 1100px) { .plans-head__grid { grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); gap: clamp(2rem, 4vw, 6rem); } }
+.plans-head h1 { max-width: 16ch; margin-bottom: 0; }
+.plans-head__lead { margin: 0; max-width: 40ch; }
+@media (min-width: 1100px) { .plans-head__lead { padding-bottom: 0.4em; } }
+.cart-empty-note {
+  display: inline-flex; align-items: center; gap: 0.6em; margin: 0 0 var(--sp-5);
+  padding: 0.7em 1em; background: var(--paper); border: 1.5px solid var(--graphite); border-radius: var(--r-tag); box-shadow: var(--tag-shadow); font-weight: 600;
+}
+
+/* The scene ----------------------------------------------------------------------- */
+.plans-stage { background: var(--cream); overflow: hidden; }
+.plans-scene { position: relative; height: clamp(380px, 64vh, 760px); background: linear-gradient(180deg, var(--cream) 0%, #F6ECD9 100%); }
+.plans-scene canvas { width: 100% !important; height: 100% !important; }
+.plans-scene.is-static { display: none; }
+.plans-cap {
+  position: absolute; left: 0; top: 0; z-index: 2; pointer-events: none; opacity: 0; will-change: transform;
+  padding: 0.4em 0.75em; background: var(--paper); border: 1.5px solid var(--graphite); border-radius: var(--r-tag); box-shadow: var(--tag-shadow);
+  font-size: var(--fs-xs); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap;
+  transition: opacity var(--t-fast);
+}
+.plans-cap::before { content: ''; position: absolute; left: -1.5px; right: -1.5px; top: -1.5px; height: 3px; background: var(--graphite); border-radius: 3px 3px 0 0; }
+.mobile-hero .plans-scene { display: none; }
+
+/* DOM months (mobile and reduced motion): two small standing months in CSS 3D */
+.dom-months { display: grid; gap: var(--sp-5); padding: var(--sp-5) var(--gutter) var(--sp-6); perspective: 1200px; }
+.dom-months[hidden] { display: none; }
+@media (min-width: 700px) { .dom-months { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1.5rem, 4vw, 5rem); width: min(100%, var(--wrap-max)); margin-inline: auto; } }
+.dom-month { position: relative; background: var(--paper); border-radius: var(--r-card); padding: clamp(0.6rem, 2vw, 1.2rem); box-shadow: var(--shadow-1); transform: rotateX(32deg); transform-origin: 50% 100%; transform-style: preserve-3d; }
+.dom-month::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: rgba(43, 38, 34, 0.25); border-radius: var(--r-card) var(--r-card) 0 0; }
+.dom-months.is-settled .dom-month, .rm .dom-month { transform: none; }
+.dom-month__name { display: flex; justify-content: space-between; align-items: baseline; gap: 1em; margin: 0 0 0.5em; font-family: var(--display); font-weight: 600; font-size: var(--fs-h4); }
+.dom-month__who { font-family: var(--ui); font-size: var(--fs-xs); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--shadow); }
+.dom-month__grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; transform-style: preserve-3d; }
+.dom-month__grid i { position: relative; display: block; aspect-ratio: 1; background: var(--paper); border: 1px solid var(--hair); border-radius: 3px; transform-style: preserve-3d; }
+.dom-month__grid i::before { content: attr(data-n); position: absolute; left: 4px; top: 2px; font-size: 0.62rem; font-weight: 600; color: var(--graphite); font-variant-numeric: tabular-nums; }
+.dom-month__grid i.dim { background: #F3EBDD; }
+.dom-month__grid i.dim::before { color: var(--shadow); }
+.dom-month__grid i.today { border-color: var(--graphite); }
+.dom-month__grid i.today::after { content: ''; position: absolute; top: 3px; right: 3px; width: 3px; height: 9px; border-radius: 2px; background: var(--marigold); }
+.dom-month__grid .tag { position: absolute; left: 2px; right: 2px; bottom: 3px; justify-content: center; font-size: 0.5rem; padding: 3px 2px 2px; white-space: normal; text-align: center; line-height: 1.05; transform-origin: 50% 100%; transform: rotateX(-32deg) translateZ(6px); }
+.dom-months.is-settled .dom-month__grid .tag, .rm .dom-month__grid .tag { transform: none; }
+.dom-month__grid .tag .ini { display: inline-grid; place-items: center; width: 1.6em; height: 1.6em; border: 1px solid var(--graphite); border-radius: 50%; font-size: 0.9em; margin-left: 0.2em; }
+@media (min-width: 700px) { .dom-month__grid .tag { font-size: 0.6rem; } .dom-month__grid i::before { font-size: 0.7rem; left: 5px; top: 3px; } }
+@media (max-width: 699px) { .dom-month__grid .tag .ini { display: none; } .dom-month__grid .tag { max-height: 2.3em; overflow: hidden; font-size: 0.46rem; } }
+
+/* Plan cards ----------------------------------------------------------------------- */
+.plans-store { padding-top: var(--sp-6); }
+.plans-cards { display: grid; gap: var(--sp-5); align-items: start; }
+.plans-cards .plan-card { min-height: 0; }
+@media (min-width: 900px) { .plans-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1.5rem, 3vw, 4rem); } }
+.plan-card { gap: var(--sp-5); }
+.plan-card__lead { display: grid; gap: var(--sp-3); align-content: start; }
+.plan-card .plan-name { font-size: var(--fs-h2); }
+.plan-card .price { display: flex; align-items: baseline; gap: 0.35em; flex-wrap: wrap; margin: 0; }
+.plan-card .price .per { font-size: clamp(1rem, 0.9rem + 0.4vw, 1.25rem); }
+.plan-card .price--two { display: grid; gap: 0.1em; }
+.plan-card .price__row { display: flex; align-items: baseline; gap: 0.35em; }
+.plan-card .price--two .settle-num { font-size: 0.82em; }
+.plan-card .price .or { font-family: var(--ui); font-size: var(--fs-body); font-weight: 500; color: var(--shadow); margin-right: 0.2em; }
+.plan-card .price-line { font-weight: 600; font-variant-numeric: tabular-nums; margin: 0; }
+.plan-card .plan-desc { max-width: 42ch; margin: 0; }
+.plan-cta--top { margin-top: var(--sp-2); }
+.plan-cta--pair { display: flex; flex-wrap: wrap; gap: var(--sp-3); align-items: center; }
+.plan-cta--pair .plan-note { flex-basis: 100%; margin: 0; font-size: var(--fs-sm); color: var(--shadow); }
+.plan-card .inclusions { align-content: start; gap: 0.7em; }
+.plan-card .inclusions li { padding: 0.45em 0; border-top: 1px solid var(--hair-soft); }
+.plan-card .inclusions li:first-child { border-top: 0; }
+/* from 1440 the card is two columns: name, price and description left, every inclusion right, and the purchase
+   buttons on a row of their own beneath both (so a label never has to squeeze into the narrow column) */
+@media (min-width: 1440px) {
+  .plan-card { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); column-gap: clamp(1.5rem, 3vw, 4rem); row-gap: var(--sp-3); align-items: start; }
+  .plan-card__lead { display: contents; }
+  .plan-card__lead > * { grid-column: 1; }
+  .plan-card .inclusions { grid-column: 2; grid-row: 1 / 6; }
+  .plan-card .plan-cta { grid-column: 1 / -1; grid-row: 6; margin-top: var(--sp-2); padding-top: var(--sp-4); border-top: 1px solid var(--hair-soft); }
+  .plan-card .plan-cta--pair { display: flex; flex-wrap: wrap; gap: var(--sp-3); align-items: center; }
+}
+@media (max-width: 499px) {
+  .plan-cta--pair .tag-btn { width: 100%; }
+  .plan-card .plan-cta .tag-btn { width: 100%; }
+}
+ul.plans-costs { display: grid; gap: var(--sp-4); margin-top: var(--sp-6); padding-top: var(--sp-5); border-top: 1.5px dashed var(--hair-strong); }
+@media (min-width: 900px) { .plans-costs { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1.5rem, 3vw, 4rem); } }
+.plans-costs li { display: grid; grid-template-columns: 24px 1fr; gap: 0.7em; align-items: start; font-weight: 500; }
+.plans-costs .icon { margin-top: 0.1em; }
+
+/* The comparison table ----------------------------------------------------------------- */
+.plans-table__lead { margin: 0; max-width: 34ch; }
+.plans-table__grid { display: grid; gap: var(--sp-6); align-items: start; }
+@media (min-width: 1100px) { .plans-table__grid { grid-template-columns: minmax(0, 1fr) clamp(300px, 27vw, 560px); gap: clamp(2rem, 4vw, 6rem); } }
+.plans-table__wrap { position: relative; }
+.plans-table__rule { display: block; width: 100%; height: 4px; overflow: visible; }
+.plans-table__rule path { stroke: var(--graphite); stroke-width: 1.5; fill: none; vector-effect: non-scaling-stroke; }
+.table-scroll { overflow-x: auto; scrollbar-width: thin; }
+.cmp-table { background: var(--paper); }
+.cmp-table thead th { padding-top: var(--sp-4); }
+.cmp-table th[scope="row"] { background: var(--paper); font-size: clamp(1.05rem, 0.95rem + 0.5vw, 1.45rem); width: 32%; }
+.cmp-table td { font-weight: 500; }
+.cmp-table td .check, .cmp-table td .no { font-weight: 500; }
+.cmp-table thead th:nth-child(3), .cmp-table td:nth-child(3) { background: rgba(237, 226, 207, 0.35); }
+.cmp-table td:nth-child(3) { font-weight: 600; }
+@media (min-width: 700px) { .cmp-table td { width: 34%; } }
+/* rows drawing in from the hairline: opacity and a short rise per cell (transforms on cells, never on rows) */
+.js:not(.rm) .cmp-table tbody tr > * { opacity: 0; transform: translateY(8px); transition: opacity var(--t-base) var(--ease-headsup), transform var(--t-base) var(--ease-headsup); }
+.js:not(.rm) .plans-table__wrap.is-revealed .cmp-table tbody tr > * { opacity: 1; transform: none; transition-delay: calc(var(--i, 0) * 70ms + 240ms); }
+.plans-table__shots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-4); align-items: start; }
+@media (min-width: 1100px) { .plans-table__shots { position: sticky; top: calc(var(--header-h-condensed) + var(--sp-4)); } }
+.plans-shot { margin: 0; display: grid; gap: var(--sp-2); }
+.plans-shot img { width: 100%; height: auto; filter: drop-shadow(0 14px 32px rgba(43, 38, 34, 0.14)); }
+.plans-shot figcaption { font-size: var(--fs-sm); color: var(--shadow); font-weight: 500; }
+.plans-shot--second { margin-top: clamp(1.5rem, 4vw, 4rem); }
+@media (max-width: 699px) {
+  .cmp-table th[scope="row"] { width: auto; position: static; }
+  .cmp-table thead th:nth-child(3), .cmp-table td:nth-child(3) { background: none; }
+  .plans-table__shots { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* FAQ over the atmosphere still ----------------------------------------------------------- */
+.plans-faq { position: relative; overflow: hidden; background: var(--cream); }
+.plans-faq__atmos { position: absolute; inset: 0; opacity: 0.32; }
+.plans-faq__atmos img { width: 100%; height: 100%; object-fit: cover; }
+.plans-faq::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(250, 243, 230, 0.55) 0%, rgba(250, 243, 230, 0.35) 50%, rgba(250, 243, 230, 0.75) 100%); pointer-events: none; z-index: 1; }
+.plans-faq__in { position: relative; z-index: 2; }
+.plans-faq__head { margin-bottom: var(--sp-6); align-items: center; }
+.plans-faq__head h2 { font-size: var(--fs-h1); margin-bottom: var(--sp-3); }
+.plans-faq__photo { aspect-ratio: 3 / 2; }
+.plans-faq__photo img { width: 100%; height: 100%; object-fit: cover; }
+.plans-faq__acc { background: transparent; }
+.plans-faq__acc .acc__btn { background: transparent; }
+.plans-faq__acc .acc__item { background: rgba(255, 255, 255, 0.55); padding: 0 var(--sp-4); border-radius: var(--r-cell); }
+.plans-faq__cols { display: grid; gap: 0; }
+.plans-faq__cols .acc + .acc { border-top: 0; }
+@media (min-width: 1100px) {
+  .plans-faq__cols { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 clamp(1.5rem, 3vw, 4rem); align-items: start; }
+  .plans-faq__cols .acc + .acc { border-top: 1px solid var(--hair); }
+}
+
+/* Identity card ------------------------------------------------------------------------------ */
+.identity-card { display: grid; gap: var(--sp-4); align-items: center; padding: clamp(1.5rem, 1rem + 2vw, 3rem); }
+@media (min-width: 700px) { .identity-card { grid-template-columns: 132px minmax(0, 1fr); gap: clamp(1.5rem, 3vw, 4rem); } }
+.identity-card__seal { width: 132px; height: 132px; }
+.identity-card h2 { font-size: var(--fs-h3); margin-bottom: var(--sp-2); }
+.identity-card .lead { margin: 0; max-width: 70ch; }
+.identity-card a { color: var(--graphite); font-weight: 600; }
+
+/* Cart page (uses this stylesheet too) --------------------------------------------------------- */
+.cart-page { position: relative; min-height: calc(100vh - var(--header-h)); overflow: hidden; display: grid; align-items: start; }
+.cart-page__scene { position: absolute; inset: 0; z-index: 0; opacity: 0.34; pointer-events: none; }
+.cart-page__scene canvas { width: 100% !important; height: 100% !important; }
+.cart-page__scene.is-static { display: none; }
+.cart-page::before { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(250, 243, 230, 0.6) 0%, rgba(250, 243, 230, 0.35) 55%, rgba(250, 243, 230, 0.7) 100%); pointer-events: none; }
+.cart-page .wrap { position: relative; z-index: 2; }
+.cart-page__grid { display: grid; gap: var(--sp-5); align-items: start; }
+@media (min-width: 1100px) { .cart-page__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(2rem, 4vw, 6rem); } }
+.cart-page h1 { margin-bottom: var(--sp-5); }
+.cart-panel { background: var(--paper); border-radius: var(--r-card); box-shadow: var(--shadow-1); padding: clamp(1.5rem, 1rem + 2vw, 3rem); position: relative; }
+.cart-panel::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--graphite); border-radius: var(--r-card) var(--r-card) 0 0; }
+.cart-panel .plan-title { font-family: var(--display); font-size: var(--fs-h2); margin: 0 0 var(--sp-3); }
+.cart-panel dl { display: grid; grid-template-columns: auto 1fr; gap: 0.5em 1.5em; margin: 0 0 var(--sp-4); }
+.cart-panel dt { color: var(--shadow); font-weight: 500; }
+.cart-panel dd { margin: 0; font-weight: 600; }
+.cart-panel .term-switch { margin: 0 0 var(--sp-4); }
+.cart-panel .remove-btn { font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.cart-page__aside { display: grid; gap: var(--sp-4); }
+.cart-page__aside .small { margin: 0; }
+.cart-page__empty { display: grid; gap: var(--sp-4); justify-items: start; }
+.cart-page__note { min-height: 1.4em; font-size: var(--fs-sm); color: var(--shadow); margin: 0 0 var(--sp-3); }
+.cart-page .dom-months { padding-inline: 0; opacity: 0.5; }
+.cart-page .dom-months .dom-month { transform: none; }

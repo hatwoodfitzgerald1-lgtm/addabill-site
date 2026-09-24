@@ -1,0 +1,75 @@
+/* Checkout page: one column of numbered fieldsets on the left, the sticky order summary with the
+   day cell scene on the right (on top, collapsible, on mobile). The quietest page on the site. */
+.checkout { min-height: calc(100vh - var(--header-h)); }
+.checkout__head { margin-bottom: var(--sp-5); }
+.checkout__head h1 { margin-bottom: 0; }
+.checkout__grid { display: grid; gap: var(--sp-6); align-items: start; }
+@media (min-width: 1100px) { .checkout__grid { grid-template-columns: minmax(0, 7fr) minmax(320px, 5fr); gap: clamp(2rem, 5vw, 8rem); } }
+@media (min-width: 1600px) { .checkout__grid { grid-template-columns: minmax(0, 7fr) minmax(360px, 4fr); } }
+
+/* the form */
+.checkout__form { gap: var(--sp-6); }
+.co-fieldset { border: 0; margin: 0; padding: 0; min-width: 0; display: grid; gap: var(--sp-4); background: var(--paper); border-radius: var(--r-card); box-shadow: var(--shadow-1); padding: clamp(1.25rem, 1rem + 1.5vw, 2.5rem); position: relative; }
+.co-fieldset::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--graphite); border-radius: var(--r-card) var(--r-card) 0 0; }
+.co-fieldset legend { display: flex; align-items: center; gap: var(--sp-3); padding: 0; margin-bottom: var(--sp-2); float: left; width: 100%; }
+.co-fieldset legend + * { clear: both; }
+.co-num { font-size: var(--fs-h4); min-width: 2.4em; }
+.co-legend { font-family: var(--display); font-weight: 600; font-size: var(--fs-h3); letter-spacing: -0.01em; }
+.co-fieldset .field { max-width: 640px; }
+.co-row { display: grid; gap: var(--sp-4); max-width: 640px; }
+@media (max-width: 499px) { .co-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } .co-row .field:last-child { grid-column: 1 / -1; } }
+@media (min-width: 500px) { .co-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr); } }
+.co-ccnum { font-variant-numeric: tabular-nums; letter-spacing: 0.06em; }
+.co-marks { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin: 0 0 var(--sp-2); }
+.co-mark { position: relative; display: inline-flex; align-items: center; padding: 0.35em 0.7em 0.3em; background: var(--paper); border: 1.5px solid var(--graphite); border-radius: 3px; font-size: var(--fs-xs); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; box-shadow: var(--tag-shadow); }
+.co-mark::before { content: ''; position: absolute; left: -1.5px; right: -1.5px; top: -1.5px; height: 3px; background: var(--graphite); border-radius: 3px 3px 0 0; }
+.co-disclosure { display: grid; gap: var(--sp-2); justify-items: start; max-width: 640px; }
+.co-whats { font-weight: 600; }
+.co-free-note { display: flex; align-items: center; gap: var(--sp-3); background: var(--paper); border-radius: var(--r-card); box-shadow: var(--shadow-1); padding: clamp(1.25rem, 1rem + 1.5vw, 2.5rem); position: relative; }
+.co-free-note::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--graphite); border-radius: var(--r-card) var(--r-card) 0 0; }
+.co-free-note p { margin: 0; }
+.co-submit { display: grid; gap: var(--sp-3); }
+.co-place { font-size: clamp(1rem, 0.95rem + 0.3vw, 1.2rem); }
+.co-fine { margin: 0; }
+.co-fine a { color: var(--graphite); font-weight: 600; }
+.checkout__form .error-summary { max-width: 640px; }
+
+/* the summary */
+.checkout__summary { position: sticky; top: calc(var(--header-h-condensed) + var(--sp-4)); display: grid; gap: var(--sp-4); }
+.co-sum { background: var(--paper); border-radius: var(--r-card); box-shadow: var(--shadow-1); padding: clamp(1.25rem, 1rem + 1.5vw, 2.25rem); position: relative; }
+.co-sum::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--graphite); border-radius: var(--r-card) var(--r-card) 0 0; }
+.co-sum__head { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-3); }
+.co-sum__head h2 { font-size: var(--fs-h3); margin: 0; }
+.co-sum__toggle { display: none; align-items: center; gap: 0.6em; font-weight: 600; padding: 0.4em 0.7em; border: 1.5px solid var(--graphite); border-radius: var(--r-cell); background: var(--paper); }
+.co-sum__toggle-total { font-family: var(--display); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.co-sum__toggle-lbl { font-size: var(--fs-xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--shadow); }
+.co-sum__list { display: grid; grid-template-columns: auto 1fr; gap: 0.6em 0; margin: var(--sp-4) 0; font-size: var(--fs-body); }
+.co-sum__list dd { padding-left: 1.25em; }
+.co-sum__list dt { color: var(--shadow); font-weight: 500; }
+.co-sum__list dd { margin: 0; font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+.co-sum__list dt.co-sum__total, .co-sum__list dd.co-sum__total { border-top: 1.5px solid var(--graphite); padding-top: 0.7em; font-family: var(--display); font-size: var(--fs-h4); color: var(--graphite); font-weight: 600; }
+.co-sum .term-switch { margin: 0 0 var(--sp-4); }
+.co-guest { margin-bottom: var(--sp-3); }
+@media (max-width: 1099px) {
+  .checkout__summary { order: -1; position: static; }
+  .co-sum__toggle { display: inline-flex; }
+  .co-sum__body[hidden] { display: none; }
+}
+
+/* the day cell scene (lightweight, DOM): today's cell standing with the plan tag on it; the shadow
+   shortens as the form is completed (--done from 0 to 1). */
+.co-cell {
+  --done: 0; --tilt: 22deg;
+  position: relative; width: clamp(150px, 12vw, 200px); aspect-ratio: 1; margin: 0 0 var(--sp-2) 0;
+  background: var(--paper); border: 1.5px solid var(--graphite); border-radius: var(--r-cell); box-shadow: var(--shadow-1);
+  transform: perspective(700px) rotateX(var(--tilt)); transform-origin: 50% 100%; transform-style: preserve-3d;
+  transition: box-shadow var(--t-slow) var(--ease-headsup);
+}
+.co-cell__date { position: absolute; left: 10px; top: 6px; font-family: var(--display); font-size: var(--fs-h3); font-weight: 600; }
+.co-cell__tick { position: absolute; right: 10px; top: 9px; width: 5px; height: 16px; border-radius: 3px; background: var(--marigold); }
+.co-cell__shadow { position: absolute; left: 22%; right: 22%; bottom: 14%; height: 12px; border-radius: 50%; background: var(--graphite); opacity: calc(0.2 - var(--done) * 0.13); transform: scaleX(calc(1 - var(--done) * 0.42)) translateZ(1px); transition: opacity var(--t-slow) var(--ease-headsup), transform var(--t-slow) var(--ease-headsup); filter: blur(2px); }
+.co-cell__tag { position: absolute; left: 18%; right: 18%; bottom: 20%; justify-content: center; font-size: var(--fs-sm); padding: 0.5em 0.4em 0.45em; transform-origin: 50% 100%; transform: rotateX(calc(-1 * var(--tilt))) translateZ(10px) translateY(calc(-9px * (1 - var(--done)))); transition: transform var(--t-slow) var(--ease-headsup); }
+.co-cell.is-done { box-shadow: var(--tag-shadow); }
+@media (max-width: 1099px) { .co-cell { display: none; } }
+.rm .co-cell { transform: none; }
+.rm .co-cell__tag { transform: none; }

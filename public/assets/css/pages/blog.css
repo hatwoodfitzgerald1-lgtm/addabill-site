@@ -1,0 +1,134 @@
+/* Addabill blog index (/blog): the head spread with the lead image, the year band (twelve small
+   months on the counter), the topic chips cloud, the masonry grid and the Build your month band.
+   Shared components come from site.css; nothing here touches the shared layer. */
+
+/* 1. Head -------------------------------------------------------------------------- */
+.blog-head { padding-top: clamp(2rem, 1.2rem + 3vw, 4.5rem); }
+.blog-head__spread { align-items: end; }
+.blog-head__text { max-width: 62ch; }
+.blog-head__text h1 { font-size: clamp(2.6rem, 1.4rem + 4.6vw, 6.2rem); }
+.blog-head__standfirst { max-width: 52ch; font-size: clamp(1.125rem, 1rem + 0.6vw, 1.75rem); }
+.blog-head__count { margin-top: var(--sp-4); font-weight: 500; }
+.blog-head__photo { margin: 0; aspect-ratio: 3 / 2; }
+.blog-head__photo img { width: 100%; height: 100%; object-fit: cover; }
+@media (min-width: 900px) {
+  .blog-head__spread { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); }
+  .blog-head__photo { aspect-ratio: 16 / 10; }
+}
+@media (min-width: 1800px) {
+  .blog-head__text { max-width: 70ch; }
+  .blog-head__standfirst { max-width: 58ch; }
+  .blog-build__week .wk .tag { font-size: 0.74rem; }
+  .post-card__body p { font-size: var(--fs-lead); }
+}
+
+/* 2. The year band (the scene) ---------------------------------------------------- */
+.blog-year { background: var(--oat); overflow: hidden; }
+.blog-year__mount { position: relative; width: 100%; height: clamp(380px, 54vh, 680px); }
+.blog-year__mount .scene-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.blog-year__mount.is-static { min-height: 0; height: 0; }
+.blog-year__hint { position: absolute; left: 50%; bottom: var(--sp-4); transform: translateX(-50%); margin: 0; font-size: var(--fs-xs); letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; color: var(--shadow); opacity: 0; transition: opacity var(--t-base) var(--ease-headsup); pointer-events: none; }
+.blog-year__hint.is-on { opacity: 1; }
+.blog-year__settled { padding-block: var(--sp-6); }
+.blog-year__settled .yr { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(150px, 1fr); gap: var(--sp-3); overflow-x: auto; scroll-snap-type: x mandatory; padding: var(--sp-5) 2px var(--sp-4); scrollbar-width: thin; }
+.yr-month { position: relative; scroll-snap-align: start; background: var(--paper); border-radius: var(--r-card); box-shadow: var(--shadow-1); padding: 0.8em 0.8em 0.9em; min-height: 132px; }
+.yr-month__name { font-family: var(--display); font-size: var(--fs-sm); font-weight: 600; display: flex; justify-content: space-between; align-items: center; margin: 0 0 0.45em; }
+.yr-month.is-current .yr-month__name::after { content: ''; width: 4px; height: 12px; border-radius: 2px; background: var(--marigold); }
+.yr-month__grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+.yr-month__grid i { display: block; aspect-ratio: 1; border: 1px solid var(--hair); border-radius: 1px; }
+.yr-month__grid i.pad { border-color: transparent; }
+.yr-month__grid i.today { background: var(--marigold); border-color: var(--marigold); }
+.yr-month .tag { position: absolute; left: 50%; bottom: 0.7em; transform: translateX(-50%) rotate(-2deg); font-size: 0.7rem; }
+@media (max-width: 899px), (pointer: coarse) {
+  .blog-year__mount { display: none; }
+  .blog-year__settled[hidden] { display: block !important; }
+  .blog-year__hint { display: none; }
+}
+.rm .blog-year__mount { display: none; }
+.rm .blog-year__settled[hidden] { display: block !important; }
+.rm .blog-year__hint { display: none; }
+
+/* 3. Topic chips (a drifting cloud) ----------------------------------------------- */
+.blog-topics { padding-block: var(--sp-6) var(--sp-3); }
+.topics { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-3); }
+.topics__label { font-family: var(--display); font-size: var(--fs-h4); font-variation-settings: 'wght' 500, 'SOFT' 100, 'opsz' 36, 'WONK' 0; margin-right: var(--sp-2); }
+.topic-chip { animation: chip-drift 6s var(--ease-headsup) infinite alternate; }
+.topic-chip:nth-child(2) { animation-duration: 6.4s; animation-delay: -1.2s; }
+.topic-chip:nth-child(3) { animation-duration: 7.1s; animation-delay: -3.1s; }
+.topic-chip:nth-child(4) { animation-duration: 5.7s; animation-delay: -0.6s; }
+.topic-chip:nth-child(5) { animation-duration: 6.8s; animation-delay: -2.2s; }
+.topic-chip:nth-child(6) { animation-duration: 7.6s; animation-delay: -4s; }
+.topic-chip:hover, .topic-chip:focus-visible, .topic-chip[aria-pressed="true"] { animation-play-state: paused; }
+@keyframes chip-drift { from { translate: 0 -2px; } to { translate: 0 3px; } }
+.rm .topic-chip { animation: none; }
+.topics__status { margin: var(--sp-3) 0 0; font-size: var(--fs-sm); color: var(--shadow); min-height: 1.5em; }
+
+/* 4. Masonry ---------------------------------------------------------------------- */
+.blog-posts { padding-top: var(--sp-5); }
+.blog-masonry { display: grid; gap: var(--sp-5); }
+@media (min-width: 700px) { .blog-masonry { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1100px) {
+  .blog-masonry { grid-template-columns: repeat(12, minmax(0, 1fr)); gap: clamp(1.25rem, 2vw, 2.5rem); }
+  .blog-masonry .post-card--a { grid-column: span 5; }
+  .blog-masonry .post-card--b { grid-column: span 7; }
+  .blog-masonry .post-card--c { grid-column: span 7; }
+  .blog-masonry .post-card--d { grid-column: span 5; }
+  .blog-masonry .post-card--b .post-card__media, .blog-masonry .post-card--c .post-card__media { aspect-ratio: 16 / 8; }
+  .blog-masonry .post-card--a .post-card__body, .blog-masonry .post-card--d .post-card__body { padding-top: var(--sp-6); }
+}
+.post-card { display: flex; flex-direction: column; padding: 0; color: var(--graphite); overflow: hidden; cursor: pointer; }
+.post-card__media { margin: 0; aspect-ratio: 3 / 2; }
+.post-card__media img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--t-slow) var(--ease-headsup); }
+.post-card:hover .post-card__media img, .post-card:focus-within .post-card__media img { transform: scale(1.03); }
+.post-card__body { padding: var(--sp-5); display: grid; gap: var(--sp-3); align-content: start; }
+.post-card__body h2 { margin: 0; font-size: clamp(1.4rem, 1rem + 1.2vw, 2.6rem); line-height: 1.1; }
+.post-card__body h2 a { text-decoration: none; color: inherit; }
+.post-card__body h2 a:focus-visible { outline-offset: 4px; }
+.post-card__body p { margin: 0; }
+.post-card__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4em 0.9em; font-size: var(--fs-xs); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--shadow); }
+.post-card__meta .cell-numeral { font-size: var(--fs-h4); min-width: 2em; letter-spacing: 0; text-transform: none; color: var(--graphite); margin-right: 0.2em; }
+.post-card__meta .post-card__when::before { content: ''; display: inline-block; width: 3px; height: 0.9em; border-radius: 2px; background: var(--marigold); margin-right: 0.7em; vertical-align: -0.1em; }
+.post-card__read { justify-self: start; font-weight: 600; }
+.post-card:hover .post-card__read, .post-card:focus-within .post-card__read { background-size: 100% 1px; }
+.post-card:hover .post-card__read::after, .post-card:focus-within .post-card__read::after { opacity: 1; transform: scale(1); }
+/* the date stamps beside the title whenever the card is hovered, not only the title itself */
+.post-card:hover .hw-stamp .stampmark, .post-card:focus-within .hw-stamp .stampmark { opacity: 1; transform: scale(1) rotate(-4deg); }
+.post-card h2 .hw-stamp { display: inline; }
+.post-card h2 .hw-stamp .stampmark { left: auto; right: -0.2em; top: -1.4em; margin: 0; }
+/* filtered state: the one piece left opens up as a wide spread */
+.blog-masonry.is-filtered .post-card { grid-column: 1 / -1; }
+@media (min-width: 900px) {
+  .blog-masonry.is-filtered .post-card { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); align-items: center; }
+  .blog-masonry.is-filtered .post-card__media { aspect-ratio: 3 / 2 !important; height: 100%; }
+  .blog-masonry.is-filtered .post-card__body { padding: clamp(1.5rem, 1rem + 2.5vw, 4rem); }
+}
+.blog-posts__empty { margin-top: var(--sp-5); }
+.blog-posts__empty .link { font: inherit; font-weight: 600; }
+
+/* 5. Build your month band ------------------------------------------------------- */
+.blog-build__spread { align-items: center; }
+.blog-build__text { max-width: 60ch; }
+.blog-build__card { padding: clamp(1.5rem, 1rem + 2vw, 3rem); display: grid; gap: var(--sp-4); }
+.blog-build__week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
+.blog-build__week .wk { position: relative; display: grid; align-content: start; gap: 0.2em; aspect-ratio: 0.82; padding: 0.55em 0.6em; border: 1px solid var(--hair); border-radius: var(--r-cell); background: var(--paper); }
+.blog-build__week .wk small { font-size: var(--fs-xs); color: var(--shadow); font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+.blog-build__week .wk b { font-family: var(--display); font-size: var(--fs-h4); font-weight: 600; }
+.blog-build__week .wk.is-today { border-color: var(--graphite); }
+.blog-build__week .wk.is-today::after { content: ''; position: absolute; top: 8px; right: 8px; width: 4px; height: 13px; border-radius: 2px; background: var(--marigold); }
+.blog-build__week .wk .tag { position: absolute; left: 6px; right: 6px; bottom: 8px; justify-content: center; font-size: 0.62rem; padding: 4px 3px 3px; white-space: normal; text-align: center; line-height: 1.05; }
+.blog-build__week .wk .chip-headsup { position: absolute; left: 50%; bottom: 12px; transform: translateX(-50%); }
+.blog-build__card .div--reminder { margin: 0; width: min(100%, 360px); }
+.blog-build__note { margin: 0; font-size: var(--fs-sm); color: var(--shadow); }
+@media (max-width: 899px) {
+  .blog-build__week .wk { padding: 0.4em 0.35em; }
+  .blog-build__week .wk .tag { font-size: 0.5rem; padding: 3px 2px 2px; left: 3px; right: 3px; }
+  .blog-build__week .wk small { font-size: 0.6rem; }
+}
+@media (max-width: 599px) {
+  .blog-build__week { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; }
+  .blog-build__week .wk:first-child, .blog-build__week .wk:last-child { display: none; }
+  .blog-build__week .wk b { font-size: 1rem; }
+}
+
+/* the date stamps beside headline words never widen the page */
+.page-blog main, .page-post main { overflow-x: clip; }

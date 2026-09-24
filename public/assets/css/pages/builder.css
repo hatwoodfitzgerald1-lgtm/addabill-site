@@ -1,0 +1,106 @@
+/* Build your month: the intro with the motif, the builder (inputs left, the live 2.5D month right,
+   stacked on mobile with the month sticky above the form), the result rising, the texts shelf. */
+
+/* Intro ---------------------------------------------------------------------- */
+.builder-head { padding-bottom: var(--sp-4); }
+.builder-head__grid { display: grid; gap: var(--sp-5); align-items: center; }
+@media (min-width: 900px) { .builder-head__grid { grid-template-columns: clamp(140px, 14vw, 240px) minmax(0, 1fr); gap: clamp(2rem, 4vw, 5rem); } }
+.builder-head__art .k-daycell { width: clamp(120px, 14vw, 240px); filter: drop-shadow(0 10px 24px rgba(43, 38, 34, 0.12)); }
+.builder-head__art .k-daycell .date { font-size: 9px; }
+.builder-head__text h1 { margin-bottom: var(--sp-3); }
+.builder-head__text .lead { max-width: 60ch; margin: 0; }
+@media (max-width: 899px) { .builder-head__art { display: none; } }
+
+/* The builder grid --------------------------------------------------------------- */
+.builder { padding-top: var(--sp-4); }
+.builder__grid { display: grid; gap: var(--sp-5); align-items: start; }
+@media (min-width: 1100px) {
+  .builder__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(2rem, 4vw, 6rem); }
+  .builder__month-col { order: 2; align-self: stretch; }
+}
+.builder__form { max-width: none; gap: var(--sp-4); }
+.builder__form .field { max-width: 560px; }
+.bm-amount, .bm-day { max-width: 220px; }
+.bm-lead { border: 0; margin: 0; padding: 0; min-width: 0; }
+.bm-lead legend { padding: 0; margin-bottom: 0.4em; }
+.bm-chips { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-bottom: 0.4em; }
+.bm-chip { cursor: pointer; position: relative; padding: 0.55em 1em; }
+.bm-chip input { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; pointer-events: none; }
+.bm-chip:has(input:checked) { background: var(--graphite); color: var(--paper); }
+.bm-chip:has(input:focus-visible) { outline: 2px solid var(--graphite); outline-offset: 3px; }
+.bm-actions { display: flex; align-items: center; gap: var(--sp-3); flex-wrap: wrap; }
+.bm-add .icon { width: 1.1em; height: 1.1em; }
+.bm-stamp:empty { display: none; }
+.bm-list { margin-top: var(--sp-5); }
+.bm-list__title { margin-bottom: var(--sp-3); }
+.bm-list__items { display: grid; gap: var(--sp-2); }
+.bm-list__item { display: grid; grid-template-columns: auto 1fr auto; gap: var(--sp-3); align-items: center; padding: 0.5em 0; border-top: 1px solid var(--hair); font-size: var(--fs-sm); }
+.bm-list__item:last-child { border-bottom: 1px solid var(--hair); }
+.bm-list__meta { color: var(--shadow); }
+.bm-remove { font-weight: 600; text-decoration: underline; text-underline-offset: 3px; padding: 0.3em 0.2em; transition: transform var(--t-fast) var(--ease-headsup); }
+.bm-remove:hover, .bm-remove:focus-visible { transform: translateY(-1px); }
+
+/* The 2.5D month --------------------------------------------------------------------- */
+.bm { position: sticky; top: calc(var(--header-h-condensed) + var(--sp-3)); display: grid; gap: var(--sp-3); }
+.bm__stage { perspective: 2200px; }
+@media (min-width: 1100px) { .bm__stage { padding-inline: 4%; } }
+.bm__month { --tilt: 30deg; position: relative; background: var(--paper); border-radius: var(--r-card); padding: clamp(0.75rem, 1.6vw, 1.4rem); box-shadow: var(--shadow-1); transform: rotateX(var(--tilt)); transform-origin: 50% 50%; transform-style: preserve-3d; will-change: transform; }
+.bm__month::before { content: ''; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: rgba(43, 38, 34, 0.25); border-radius: var(--r-card) var(--r-card) 0 0; }
+.rm .bm__month { transform: none; }
+.bm__name { display: flex; justify-content: space-between; align-items: baseline; gap: 1em; margin: 0 0 0.5em; font-family: var(--display); font-weight: 600; font-size: var(--fs-h3); }
+.bm__count { font-family: var(--ui); font-size: var(--fs-xs); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--shadow); }
+.bm__grid { position: relative; display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; transform-style: preserve-3d; }
+.bm-cell { position: relative; aspect-ratio: 1; background: var(--paper); border: 1px solid var(--hair); border-radius: 4px; transform-style: preserve-3d; transition: border-color var(--t-fast); }
+.bm-cell.dim { background: #F3EBDD; }
+.bm-cell.lead { display: none; }
+.bm__grid.has-lead .bm-cell.lead { display: block; }
+.bm-cell__n { position: absolute; left: 6px; top: 3px; font-size: 0.72rem; font-weight: 600; color: var(--graphite); font-variant-numeric: tabular-nums; }
+.bm-cell.dim .bm-cell__n { color: var(--shadow); }
+.bm-cell.is-due { border-color: var(--graphite); }
+.bm-cell.is-reminder::after { content: ''; position: absolute; right: 5px; top: 5px; width: 7px; height: 7px; border-radius: 50%; background: var(--marigold); }
+.bm-tag-wrap { position: absolute; left: 3px; right: 3px; bottom: 5px; transform-style: preserve-3d; }
+.bm-tag { display: flex; justify-content: center; width: 100%; font-size: 0.6rem; line-height: 1.05; padding: 4px 3px 3px; white-space: normal; text-align: center; transform-origin: 50% 100%; transform: rotateX(calc(-1 * var(--tilt))) translateZ(8px); overflow-wrap: anywhere; }
+.rm .bm-tag { transform: none; }
+.bm__arcs { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; transform: translateZ(2px); }
+.bm__arcs path { fill: none; stroke: var(--graphite); stroke-width: 1.2; }
+.bm__arcs circle { fill: var(--marigold); }
+.bm__empty { margin: 0; font-family: var(--display); font-size: var(--fs-h4); font-variation-settings: 'wght' 500, 'SOFT' 100, 'opsz' 36, 'WONK' 0; }
+.bm__empty[hidden] { display: none; }
+@media (min-width: 1100px) { .bm-cell__n { font-size: 0.8rem; left: 7px; top: 4px; } .bm-tag { font-size: 0.68rem; } }
+@media (max-width: 1099px) {
+  /* the month is sticky above the form and the result: the column itself sticks inside the section */
+  .builder__grid { display: block; }
+  .builder__month-col { position: sticky; top: var(--header-h); z-index: 5; background: var(--cream); padding-bottom: var(--sp-3); margin-bottom: var(--sp-4); box-shadow: 0 12px 12px -12px rgba(43, 38, 34, 0.12); }
+  .bm { position: static; gap: var(--sp-2); }
+  .bm__month { --tilt: 18deg; padding: 0.6rem; }
+  .bm-cell { aspect-ratio: 1.25; }
+  .bm__name { font-size: var(--fs-h4); }
+  .bm__grid { gap: 3px; }
+  .bm-cell__n { font-size: 0.6rem; left: 3px; top: 1px; }
+  .bm-tag { font-size: 0.48rem; padding: 3px 2px 2px; }
+  .bm-tag-wrap { left: 2px; right: 2px; bottom: 3px; }
+  .bm__empty { font-size: var(--fs-body); }
+}
+
+/* The result --------------------------------------------------------------------------- */
+.bm-result { margin-top: var(--sp-6); }
+.bm-result[hidden] { display: none; }
+.bm-result__in { display: grid; gap: var(--sp-3); }
+.bm-result__in h2 { margin: 0; }
+.bm-summary { margin: 0 0 var(--sp-2); max-width: 46ch; }
+.bm-reco { padding: clamp(1.25rem, 1rem + 1.5vw, 2.5rem); display: grid; gap: var(--sp-3); border: 1.5px solid var(--graphite); }
+.bm-reco__title { margin: 0; font-size: var(--fs-h3); }
+.bm-reco__para { margin: 0; max-width: 56ch; }
+.bm-reco__cta { display: grid; gap: var(--sp-3); justify-items: start; margin-top: var(--sp-2); }
+.bm-reco__links { display: flex; flex-wrap: wrap; gap: var(--sp-2) var(--sp-4); margin: 0; }
+.bm-reco__links a { font-weight: 600; }
+
+/* The texts shelf ----------------------------------------------------------------------- */
+.texts__lead { margin: 0; }
+.texts__track { align-items: stretch; min-height: 1px; }
+.texts__track li { width: min(84vw, 380px); display: flex; }
+.texts__track .bubble { max-width: none; width: 100%; }
+.texts__track .bubble__day { display: flex; }
+@media (min-width: 1100px) { .texts__track li { width: calc((100% - 4 * var(--sp-4)) / 4.4); min-width: 300px; } }
+.texts__empty { margin: 0; color: var(--shadow); }
+.texts__empty[hidden] { display: none; }

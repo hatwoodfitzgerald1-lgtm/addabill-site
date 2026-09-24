@@ -1,0 +1,75 @@
+/* Confirmation page: the seal and the order check, the H1 and paragraph, the month scene, the order
+   card beside the what happens next timeline, the login offer, the photo and the CTA. */
+.confirm-head { padding-bottom: var(--sp-5); }
+.confirm-head__grid { display: grid; gap: var(--sp-5); align-items: center; }
+@media (min-width: 900px) { .confirm-head__grid { grid-template-columns: clamp(180px, 16vw, 260px) minmax(0, 1fr); gap: clamp(2rem, 4vw, 5rem); } }
+/* wide: the seal, the heading and the paragraph share one row across the wrap */
+@media (min-width: 1300px) {
+  .confirm-head__grid { grid-template-columns: clamp(180px, 14vw, 280px) minmax(0, 6fr) minmax(0, 5fr); align-items: end; }
+  .confirm-head__text { display: contents; }
+  .confirm-head__text .eyebrow { grid-column: 2; grid-row: 1; align-self: start; }
+  .confirm-head__text h1 { grid-column: 2; grid-row: 2; margin: 0; }
+  .confirm-head__text .confirm-para { grid-column: 3; grid-row: 2; align-self: end; padding-bottom: 0.6em; }
+  .confirm-seal { grid-row: 1 / 3; align-self: center; }
+  .confirm-head__grid { grid-template-rows: auto auto; row-gap: var(--sp-3); }
+}
+.confirm-seal { position: relative; width: clamp(180px, 16vw, 260px); aspect-ratio: 1; }
+.confirm-seal .c-seal { width: 100%; height: 100%; }
+.order-check { position: absolute; right: -6%; bottom: -4%; width: 44%; height: 44%; }
+.order-check__disc { fill: var(--paper); stroke: var(--graphite); stroke-width: 1.5; }
+.order-check__mark { fill: none; stroke: var(--moss); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+.rm .order-check__mark, .order-check.is-drawn .order-check__mark { stroke-dashoffset: 0 !important; }
+.confirm-head__text h1 { max-width: 14ch; }
+.confirm-para { max-width: 62ch; margin: 0; }
+
+/* the scene */
+.confirm-stage { background: var(--cream); overflow: hidden; }
+.confirm-scene { position: relative; height: clamp(360px, 58vh, 700px); background: linear-gradient(180deg, var(--cream) 0%, #F6ECD9 100%); }
+.confirm-scene canvas { width: 100% !important; height: 100% !important; }
+.confirm-scene.is-static { display: none; }
+.mobile-hero .confirm-scene { display: none; }
+.confirm-dom { padding: var(--sp-5) var(--gutter) var(--sp-6); perspective: 1200px; }
+.confirm-dom[hidden] { display: none; }
+.confirm-dom .dom-month { width: min(100%, 560px); margin-inline: auto; transform: rotateX(26deg); }
+@media (min-width: 1300px) { .confirm-dom .dom-month { width: min(100%, 900px); } }
+.confirm-dom.is-settled .dom-month, .rm .confirm-dom .dom-month { transform: none; }
+.confirm-dom .dom-month__grid .tag { font-size: 0.55rem; }
+.js:not(.rm) .confirm-dom__tag { opacity: 0; transform: rotateX(-26deg) translateZ(6px) translateY(-24px); transition: opacity var(--t-slow) var(--ease-headsup), transform var(--t-slow) var(--ease-headsup); }
+.js:not(.rm) .confirm-dom.is-landed .confirm-dom__tag { opacity: 1; transform: rotateX(-26deg) translateZ(6px) translateY(0); }
+.rm .confirm-dom__tag { opacity: 1; transform: none; }
+
+/* the order card and the timeline */
+.confirm-order__grid { display: grid; gap: var(--sp-6); align-items: start; }
+@media (min-width: 1100px) { .confirm-order__grid { grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: clamp(2rem, 5vw, 8rem); } }
+.order-card { padding: clamp(1.5rem, 1rem + 2vw, 3rem); }
+.order-card__head { display: flex; justify-content: space-between; align-items: baseline; gap: var(--sp-3); flex-wrap: wrap; margin-bottom: var(--sp-4); }
+.order-card__head h2 { margin: 0; font-size: var(--fs-h3); }
+.order-card__ref { margin: 0; font-variant-numeric: tabular-nums; font-weight: 600; }
+.order-card__list { display: grid; grid-template-columns: auto 1fr; gap: 0.7em 1.5em; margin: 0 0 var(--sp-4); }
+.order-card__list dt { color: var(--shadow); font-weight: 500; }
+.order-card__list dd { margin: 0; font-weight: 600; text-align: right; overflow-wrap: anywhere; }
+.order-card__note { margin: 0; }
+.next { position: relative; padding-left: clamp(2rem, 3vw, 3.5rem); }
+.next__rail { position: absolute; left: 8px; top: 0.4em; bottom: 0; width: 2px; height: calc(100% - 0.4em); overflow: visible; }
+.next__rail path { stroke: var(--graphite); stroke-width: 1.5; fill: none; vector-effect: non-scaling-stroke; }
+.next__title { font-size: var(--fs-h3); margin-bottom: var(--sp-5); }
+.next__list { display: grid; gap: var(--sp-5); }
+.next__item { position: relative; }
+.next__dot { position: absolute; left: calc(-1 * clamp(2rem, 3vw, 3.5rem) + 3px); top: 0.35em; width: 12px; height: 12px; border-radius: 50%; background: var(--marigold); box-shadow: 0 0 0 3px var(--oat); }
+.next__when { font-family: var(--display); font-size: var(--fs-h4); font-weight: 600; margin: 0 0 0.25em; }
+.next__item p:last-child { margin: 0; max-width: 46ch; }
+
+/* the login offer, the CTA and the photo */
+.confirm-after__grid { align-items: center; }
+.confirm-after__text { display: grid; gap: var(--sp-6); }
+.account-offer { display: grid; gap: var(--sp-3); justify-items: start; }
+.account-offer h2 { font-size: var(--fs-h3); margin: 0; }
+.account-offer p { max-width: 56ch; margin: 0; }
+.account-offer__toggle { font-weight: 600; }
+.account-form { width: 100%; max-width: 480px; margin-top: var(--sp-2); }
+.account-form__actions { display: grid; justify-items: start; }
+.account-offer__done:empty { display: none; }
+.confirm-cta h2 { font-size: var(--fs-h2); margin-bottom: var(--sp-3); }
+.confirm-cta p { margin: 0; }
+.confirm-photo { aspect-ratio: 3 / 2; }
+.confirm-photo img { width: 100%; height: 100%; object-fit: cover; }
