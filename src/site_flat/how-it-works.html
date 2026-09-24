@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How Addabill works: add, see, heads-up, tap</title>
+<meta name="description" content="Four steps, in detail: how bills get added by typing or by photo, what the calendar shows, when the texts arrive, and how one tap opens your biller&#x27;s own payment page.">
+<link rel="canonical" href="https://addabill.com/how-it-works">
+<meta name="theme-color" content="#FAF3E6">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Addabill">
+<meta property="og:title" content="How Addabill works: add, see, heads-up, tap">
+<meta property="og:description" content="Four steps, in detail: how bills get added by typing or by photo, what the calendar shows, when the texts arrive, and how one tap opens your biller&#x27;s own payment page.">
+<meta property="og:url" content="https://addabill.com/how-it-works">
+<meta property="og:image" content="https://addabill.com/assets/og-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Addabill: for whoever keeps the bills at your place. The wordmark and a small month with one marigold tick on cream.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How Addabill works: add, see, heads-up, tap">
+<meta name="twitter:description" content="Four steps, in detail: how bills get added by typing or by photo, what the calendar shows, when the texts arrive, and how one tap opens your biller&#x27;s own payment page.">
+<meta name="twitter:image" content="https://addabill.com/assets/og-card.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/fraunces-latin-full-normal.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/figtree-latin-wght-normal.woff2">
+<link rel="stylesheet" href="/assets/css/tokens.css">
+<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/assets/css/pages/how-it-works.css">
+<script>(function(d){d.classList.add('js');var q=new URLSearchParams(location.search).get('qa');if(q==='rm'||(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))d.classList.add('rm');if(window.innerWidth<900||(window.matchMedia&&matchMedia('(pointer: coarse)').matches))d.classList.add('mobile-hero');})(document.documentElement);</script>
+
+</head>
+<body class="page-hiw" data-scene="/assets/js/pages/how-it-works-scene.js">
+<a class="skip-link" href="#main">Skip to content</a>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <!-- The 10 core kit icons: 1.5px graphite strokes on a 24px grid, rounded joins, 2px corners, line only, a marigold dot where a date matters. Use: <svg class="icon" aria-hidden="true"><use href="#i-add"/></svg> -->
+  <symbol id="i-add" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="14" rx="2"/><path d="M4 8h16"/><path d="M12 11v5M9.5 13.5h5"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 8h18M8 8v12M13 8v12M18 8v12M3 12h18M3 16h18"/><circle class="dot" cx="15.5" cy="10" r="1.3"/></symbol>
+  <symbol id="i-headsup" viewBox="0 0 24 24"><path d="M4 6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-7l-4 3.5V16H6a2 2 0 0 1-2-2z"/><path d="M8 8h8M8 11h5"/><rect class="dot" x="15.5" y="9.5" width="1.6" height="4" rx="0.8"/></symbol>
+  <symbol id="i-tap" viewBox="0 0 24 24"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="M3 9h12"/><path d="M13 13h8M18 10l3 3-3 3"/></symbol>
+  <symbol id="i-paper" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><rect x="8" y="7" width="8" height="4" rx="1"/><path d="M8 14h8M8 17h5"/></symbol>
+  <symbol id="i-photo" viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 1 2-2h3l1.5-2h5L16 6h3a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><rect x="8.5" y="9.5" width="7" height="6" rx="1"/><path d="M8.5 11.5h7"/></symbol>
+  <symbol id="i-household" viewBox="0 0 24 24"><rect x="3" y="6" width="11" height="10" rx="2"/><path d="M3 9h11"/><rect x="10" y="10" width="11" height="10" rx="2"/><path d="M10 13h11"/><path d="M6 12.5h2M13.5 16.5h3"/></symbol>
+  <symbol id="i-paid" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 8h18"/><path class="moss" d="M8 13.5l2.5 2.5 5.5-5.5"/></symbol>
+  <symbol id="i-nofees" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 8h18"/><ellipse cx="12" cy="13.5" rx="2.6" ry="3.2"/></symbol>
+  <symbol id="i-cancel" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 8h18"/><path d="M15 8v11" stroke-dasharray="2 2"/><path d="M6 13h6"/></symbol>
+  <!-- utility icons in the same style -->
+  <symbol id="i-cart" viewBox="0 0 24 24"><path d="M4 7h12l-1.5 8H6.5z"/><path d="M4 7l-1-3H1"/><circle cx="8" cy="19" r="1.3"/><circle cx="14" cy="19" r="1.3"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M4 12h16M13 5l7 7-7 7"/></symbol>
+  <symbol id="i-arrow-left" viewBox="0 0 24 24"><path d="M20 12H4M11 5l-7 7 7 7"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></symbol>
+  <symbol id="i-no" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M7.5 7.5l9 9"/></symbol>
+  <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 5l12 7-12 7z"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5v14M16 5v14"/></symbol>
+</svg>
+
+<header class="hdr" id="top">
+  <div class="hdr__in">
+    <a class="hdr__brand" href="/" aria-label="Addabill, home">
+      <img class="month-glyph" src="/assets/logo-icon.svg" alt="" width="28" height="28" decoding="async">
+      <img class="wordmark" src="/assets/logo-wordmark.svg" alt="Addabill" width="124" height="30" decoding="async">
+    </a>
+    <nav class="hdr__nav" aria-label="Primary">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/how-it-works">How it works</a></li>
+        <li><a href="/plans">Plans</a></li>
+        <li><a href="/builder">Build your month</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="hdr__actions">
+      <a class="tag-btn tag-btn--small hdr__buy" href="/checkout?plan=household-monthly" data-cart-add="household-monthly"><span class="lbl">Purchase the Household plan</span></a>
+      <a class="cart-tag" href="/cart" data-cart-open aria-label="Cart, 0 items" aria-haspopup="dialog" aria-controls="cart-drawer">
+        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-cart"/></svg>
+        <span class="cart-count" aria-hidden="true">0</span>
+        <span class="today-tick" aria-hidden="true"></span>
+      </a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mnav"><span class="bars" aria-hidden="true"></span>Menu</button>
+    </div>
+  </div>
+</header>
+<div class="mnav" id="mnav" role="dialog" aria-label="Menu" aria-modal="true">
+  <button class="menu-btn mnav__close" type="button" aria-label="Close the menu">Close</button>
+  <div class="week-strip" aria-hidden="true"></div>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/how-it-works">How it works</a></li>
+    <li><a href="/plans">Plans</a></li>
+    <li><a href="/builder">Build your month</a></li>
+    <li><a href="/blog">Blog</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/contact">Contact</a></li>
+  </ul>
+  <a class="tag-btn tag-btn--block" href="/checkout?plan=household-monthly" data-cart-add="household-monthly"><span class="lbl">Purchase the Household plan</span></a>
+  <p class="small muted u-mt-4">$5 a month or $40 a year. No fees on your bills. Cancel any time.</p>
+</div>
+
+<main id="main" class="" data-hover="tap" tabindex="-1">
+<!-- How it works (Section 7.2). Scene: the week walk (seven paper day cells, the camera tracks Monday to
+     Sunday as the four steps happen, then rises to look down at Thursday). Hover: the tap. Entrances:
+     hero scene clip-cell, steps mask-up (numerals settle, tags slide in), tabs pop, timeline settle,
+     anatomy draw-in, closing card rise. Copy verbatim from Section 7a, How it works page. -->
+<section class="hiw-hero" aria-labelledby="hiw-title">
+  <div class="wrap hiw-hero__copy">
+    <p class="eyebrow">Add, See, Heads-up, Tap</p>
+    <h1 id="hiw-title">Four steps. That's the whole app.</h1>
+    <p class="lead">Each step in more detail than the home page had room for, plus exactly what the texts say and when they arrive.</p>
+  </div>
+  <div class="hiw-hero__scene" id="hiw-scene" data-reveal="clip-cell" data-reveal-start="top 100%" aria-hidden="true">
+    <p class="hiw-hero__hint" id="hiw-hint">Scroll to walk the week</p>
+    <div class="hiw-week" id="hiw-week" hidden>
+      <ol class="plain hiw-week__days">
+        <li class="dim"><span class="n">29</span><span class="wd">Mon</span><span class="chip-headsup"></span></li>
+        <li class="dim"><span class="n">30</span><span class="wd">Tue</span></li>
+        <li><span class="n">1</span><span class="wd">Wed</span><span class="tag tag--paid"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Rent</span></li>
+        <li class="today"><span class="n">2</span><span class="wd">Thu</span><span class="tag">Water bill</span></li>
+        <li><span class="n">3</span><span class="wd">Fri</span></li>
+        <li><span class="n">4</span><span class="wd">Sat</span></li>
+        <li><span class="n">5</span><span class="wd">Sun</span></li>
+      </ol>
+    </div>
+  </div>
+  <ol class="visually-hidden" aria-label="One week, Monday September 29 to Sunday October 5, with the four steps on it">
+    <li>Monday September 29: the water bill is added and stands on Thursday</li>
+    <li>Wednesday October 1: rent, marked paid</li>
+    <li>Thursday October 2: the water bill, today, with a text sent the day before</li>
+    <li>Sunday October 5: the water bill marked paid after one tap to the utility's own page</li>
+  </ol>
+</section>
+
+<!-- The four steps beside the sticky phone rail (unpinned on mobile, where each step carries its own phone). -->
+<section class="band hiw-rail" aria-label="The four steps, expanded">
+  <div class="wrap hiw-rail__grid">
+    <ol class="plain hiw-rail__steps" id="hiw-steps">
+      <li class="hiw-step" id="step-add" data-screen="add" data-reveal="mask-up" data-reveal-stagger="0.1" data-reveal-start="top 80%">
+        <figure class="hiw-step__phone u-hide-desktop"><picture>
+          <source type="image/webp" srcset="/assets/prod-add-framed-1410.webp">
+          <img src="/assets/prod-add-framed.png" alt="The Add a bill sheet in the Addabill app with the biller, the amount, the due day of the month and the text reminder days filled in for the water bill." width="1410" height="2820" loading="lazy" decoding="async">
+        </picture></figure>
+        <span class="settle-num numeral-index hiw-step__num" aria-hidden="true" data-reveal-item>01</span>
+        <div class="hiw-step__emblem" aria-hidden="true" data-reveal-item>
+          <svg class="icon icon--lg" aria-hidden="true"><use href="#i-add"/></svg>
+          <span class="tag hiw-step__tag">Water bill</span>
+          <span class="stamp hiw-step__stamp"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path class="draw" d="M5 12.5l4.5 4.5L19 7"/></svg><span>Added</span></span>
+        </div>
+        <h3 data-reveal-item><span class="visually-hidden">Step 1, </span>Add</h3>
+        <p data-reveal-item>Give the bill the name you use at home, the day of the month it's due, and the amount if you know it. That's the whole form. On the Household plan you can skip the typing and photograph the paper bill or a screenshot instead, and Addabill reads the amount and the due date off it. Either way an Added stamp appears, a short text confirms it, and the bill is on the calendar.</p>
+      </li>
+      <li class="hiw-step" id="step-see" data-screen="calendar" data-reveal="mask-up" data-reveal-stagger="0.1" data-reveal-start="top 80%">
+        <figure class="hiw-step__phone u-hide-desktop"><picture>
+          <source type="image/webp" srcset="/assets/prod-calendar-framed-1410.webp">
+          <img src="/assets/prod-calendar-framed.png" alt="The Addabill October calendar on a phone, bill tags standing on their due dates and the water bill card open showing $64.20 due Thursday October 2." width="1410" height="2820" loading="lazy" decoding="async">
+        </picture></figure>
+        <span class="settle-num numeral-index hiw-step__num" aria-hidden="true" data-reveal-item>02</span>
+        <div class="hiw-step__emblem" aria-hidden="true" data-reveal-item>
+          <svg class="icon icon--lg" aria-hidden="true"><use href="#i-calendar"/></svg>
+          <span class="hiw-step__cell"><b>2</b><span class="tag hiw-step__tag">Water bill</span></span>
+          <span class="hiw-step__due">Due next</span>
+        </div>
+        <h3 data-reveal-item><span class="visually-hidden">Step 2, </span>See</h3>
+        <p data-reveal-item>The month view shows every bill standing on its due day, with a Due next list underneath for the week ahead. Switch to the list view when you'd rather read down the month than across it. On Household, each bill shows who in the house handles it, so nobody has to ask. There are no charts, no scores and no totals shouting at you, just what's due and when.</p>
+      </li>
+      <li class="hiw-step" id="step-headsup" data-screen="motion" data-reveal="mask-up" data-reveal-stagger="0.1" data-reveal-start="top 80%">
+        <figure class="hiw-step__phone u-hide-desktop">
+          <video class="hiw-step__video" muted playsinline loop preload="none" poster="/assets/product-motion-poster.jpg" aria-label="The Addabill October calendar on a phone: the water bill card opens, its three reminder dates appear one by one and an Added stamp lands.">
+            <source src="/assets/product-motion.webm" type="video/webm">
+            <source src="/assets/product-motion.mp4" type="video/mp4">
+          </video>
+        </figure>
+        <span class="settle-num numeral-index hiw-step__num" aria-hidden="true" data-reveal-item>03</span>
+        <div class="hiw-step__emblem" aria-hidden="true" data-reveal-item>
+          <svg class="icon icon--lg" aria-hidden="true"><use href="#i-headsup"/></svg>
+          <span class="chip-headsup hiw-step__chip"></span>
+          <span class="tag hiw-step__tag">Water bill</span>
+          <span class="hiw-step__days"><b>7</b><b>3</b><b>1</b></span>
+        </div>
+        <h3 data-reveal-item><span class="visually-hidden">Step 3, </span>Heads-up</h3>
+        <p data-reveal-item>Before each bill is due, a text arrives at your phone with the biller, the amount, the due date and a link to that biller's own payment page. You choose how far ahead: 7 days, 3 days and 1 day before, any or all of them. On Household, every person gets their texts at their own number, after saying yes to texts themselves. Every message ends with HELP and STOP.</p>
+      </li>
+      <li class="hiw-step" id="step-tap" data-screen="bills" data-reveal="mask-up" data-reveal-stagger="0.1" data-reveal-start="top 80%">
+        <figure class="hiw-step__phone u-hide-desktop"><picture>
+          <source type="image/webp" srcset="/assets/prod-bills-framed-1410.webp">
+          <img src="/assets/prod-bills-framed.png" alt="The Addabill Bills list on a phone: eleven October bills, each with the biller, its amount, its due date, a paid check on the rent, and an arrow to open the payment page." width="1410" height="2820" loading="lazy" decoding="async">
+        </picture></figure>
+        <span class="settle-num numeral-index hiw-step__num" aria-hidden="true" data-reveal-item>04</span>
+        <div class="hiw-step__emblem" aria-hidden="true" data-reveal-item>
+          <svg class="icon icon--lg" aria-hidden="true"><use href="#i-tap"/></svg>
+          <span class="tag tag--paid hiw-step__tag"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Water bill</span>
+          <span class="hiw-step__paid">Paid</span>
+        </div>
+        <h3 data-reveal-item><span class="visually-hidden">Step 4, </span>Tap</h3>
+        <p data-reveal-item>The link in the text opens that biller's own payment page in your browser, where you sign in and pay exactly as you did last month. Addabill isn't part of that transaction and never sees the card you use there. Come back and mark the bill paid, and it gets a check on the calendar. Household keeps 12 months of that history and turns it into a yearly summary of spending by bill, as a PDF.</p>
+      </li>
+    </ol>
+    <div class="hiw-rail__media u-hide-mobile">
+      <div class="hiw-rail__sticky">
+        <div class="hiw-rail__grid-bg" aria-hidden="true"></div>
+        <div class="hiw-phone" id="hiw-phone">
+          <div class="hiw-phone__layer is-on" data-layer="motion">
+            <video class="hiw-phone__video" id="hiw-video" muted playsinline loop preload="metadata" poster="/assets/product-motion-poster.jpg" aria-label="The Addabill October calendar on a phone: the water bill card opens, its three reminder dates appear one by one and an Added stamp lands.">
+              <source src="/assets/product-motion.webm" type="video/webm">
+              <source src="/assets/product-motion.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="hiw-phone__layer" data-layer="add" aria-hidden="true"><picture>
+            <source type="image/webp" srcset="/assets/prod-add-framed-1410.webp">
+            <img src="/assets/prod-add-framed.png" alt="The Add a bill sheet in the Addabill app with the biller, the amount, the due day of the month and the text reminder days filled in for the water bill." width="1410" height="2820" loading="lazy" decoding="async">
+          </picture></div>
+          <div class="hiw-phone__layer" data-layer="calendar" aria-hidden="true"><picture>
+            <source type="image/webp" srcset="/assets/prod-calendar-framed-1410.webp">
+            <img src="/assets/prod-calendar-framed.png" alt="The Addabill October calendar on a phone, bill tags standing on their due dates and the water bill card open showing $64.20 due Thursday October 2." width="1410" height="2820" loading="lazy" decoding="async">
+          </picture></div>
+          <div class="hiw-phone__layer" data-layer="bills" aria-hidden="true"><picture>
+            <source type="image/webp" srcset="/assets/prod-bills-framed-1410.webp">
+            <img src="/assets/prod-bills-framed.png" alt="The Addabill Bills list on a phone: eleven October bills, each with the biller, its amount, its due date, a paid check on the rent, and an arrow to open the payment page." width="1410" height="2820" loading="lazy" decoding="async">
+          </picture></div>
+        </div>
+        <p class="hiw-rail__caption" id="hiw-rail-caption" aria-hidden="true"><span class="hiw-rail__caption-num"></span><span class="hiw-rail__caption-text">Every bill on its day, in the app</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- By typing or by photo: real tabs (a segmented control on mobile) whose phone screen crossfades. -->
+<section class="band band--paper hiw-tabs" aria-labelledby="tabs-title">
+  <div class="wrap">
+    <div class="section-head section-head--split">
+      <h2 id="tabs-title">By typing or by photo</h2>
+      <div class="hiw-tabs__list u-right-desktop" role="tablist" aria-label="Three ways to add a bill">
+        <button class="chip hiw-tab" role="tab" id="tab-type" type="button" aria-selected="true" aria-controls="panel-type"><svg class="icon" aria-hidden="true"><use href="#i-add"/></svg>Type</button>
+        <button class="chip hiw-tab" role="tab" id="tab-snap" type="button" aria-selected="false" aria-controls="panel-snap" tabindex="-1"><svg class="icon" aria-hidden="true"><use href="#i-photo"/></svg>Snap</button>
+        <button class="chip hiw-tab" role="tab" id="tab-share" type="button" aria-selected="false" aria-controls="panel-share" tabindex="-1"><svg class="icon" aria-hidden="true"><use href="#i-paper"/></svg>Share</button>
+      </div>
+    </div>
+    <div class="hiw-tabs__panorama" data-reveal="pop" data-reveal-stagger="0.14">
+      <div class="hiw-tabs__panels" data-reveal-item>
+        <div class="hiw-tabs__panel is-on" role="tabpanel" id="panel-type" aria-labelledby="tab-type" tabindex="0">
+          <h3>Type</h3>
+          <p>Name the biller the way you say it at home, add the due day, and the amount if you have it. That's the entire form, and it's the same on both plans.</p>
+        </div>
+        <div class="hiw-tabs__panel" role="tabpanel" id="panel-snap" aria-labelledby="tab-snap" tabindex="0" hidden>
+          <h3>Snap</h3>
+          <p>On Household, point the camera at a paper bill and Addabill reads the amount and the due date off the page. Check what it read, fix anything the envelope crumpled, and it's added.</p>
+        </div>
+        <div class="hiw-tabs__panel" role="tabpanel" id="panel-share" aria-labelledby="tab-share" tabindex="0" hidden>
+          <h3>Share</h3>
+          <p>Bills that never touch paper come in as screenshots. Take one in your email or the biller's app, send it to Addabill, and it reads the amount and the due date like any photo.</p>
+        </div>
+      </div>
+      <div class="hiw-tabs__phone" data-reveal-item>
+        <div class="hiw-screen" id="hiw-tab-screen">
+          <div class="hiw-screen__layer is-on" data-screen="add"><picture>
+            <source type="image/webp" srcset="/assets/prod-add-framed-1410.webp">
+            <img src="/assets/prod-add-framed.png" alt="The Add a bill sheet in the Addabill app with the biller, the amount, the due day of the month and the text reminder days filled in for the water bill." width="1410" height="2820" loading="lazy" decoding="async">
+          </picture></div>
+          <div class="hiw-screen__layer" data-screen="photo" aria-hidden="true"><picture>
+            <source type="image/webp" srcset="/assets/prod-photo-framed-1410.webp">
+            <img src="/assets/prod-photo-framed.png" alt="The Addabill photo capture screen framing a paper bill on a counter, showing what it read, $64.20 due Thu Oct 2, for checking." width="1410" height="2820" loading="lazy" decoding="async">
+          </picture></div>
+        </div>
+      </div>
+      <div class="hiw-tabs__side" data-reveal-item>
+        <div class="hiw-tabs__kit is-on" data-for="type" aria-hidden="true">
+          <div class="hiw-kit-cell"><svg class="k-daycell" viewBox="0 0 64 64" width="64" height="64" aria-hidden="true">
+<rect class="cell draw-path" x="2.5" y="2.5" width="59" height="59" rx="4" pathLength="1000"/>
+<text class="date" x="9" y="19" font-size="12">2</text>
+<rect class="tick" x="49" y="8.5" width="4" height="11" rx="2"/>
+<ellipse class="sh" cx="40" cy="53.5" rx="17" ry="3.2"/>
+<g class="tagg"><rect class="tag" x="24.5" y="25.5" width="29" height="26" rx="2"/><rect class="stripe" x="25.5" y="25.5" width="27" height="3.5"/></g>
+</svg>
+</div>
+          <span class="stamp hiw-kit-stamp"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path class="draw" d="M5 12.5l4.5 4.5L19 7"/></svg><span>Added</span></span>
+          <p class="hiw-kit-note">Biller, due day, amount if you have it</p>
+        </div>
+        <figure class="photo grade grade--light hiw-tabs__photo" data-for="snap" hidden>
+          <picture>
+            <source type="image/webp" srcset="/assets/photo-hiw-capture-480.webp 480w, /assets/photo-hiw-capture-800.webp 800w, /assets/photo-hiw-capture-1200.webp 1200w, /assets/photo-hiw-capture-1600.webp 1600w" sizes="(min-width: 1100px) 38vw, 100vw">
+            <img src="/assets/photo-hiw-capture-1600.jpg" alt="A hand holding a phone above a paper bill on the counter, the Addabill photo capture screen framing the bill and reading $64.20 due Thu Oct 2." width="1600" height="1067" loading="lazy" decoding="async">
+          </picture>
+        </figure>
+        <div class="hiw-tabs__kit" data-for="share" aria-hidden="true" hidden>
+          <div class="hiw-kit-shot"><span class="hiw-kit-shot__bar"></span><i></i><i></i><i class="short"></i></div>
+          <svg class="hiw-kit-arrow" viewBox="0 0 120 40" width="120" height="40" aria-hidden="true"><path d="M6 20 H104" /><path d="M92 8 L106 20 L92 32"/></svg>
+          <div class="hiw-kit-cell"><svg class="k-daycell" viewBox="0 0 64 64" width="64" height="64" aria-hidden="true">
+<rect class="cell draw-path" x="2.5" y="2.5" width="59" height="59" rx="4" pathLength="1000"/>
+<text class="date" x="9" y="19" font-size="12">2</text>
+<rect class="tick" x="49" y="8.5" width="4" height="11" rx="2"/>
+<ellipse class="sh" cx="40" cy="53.5" rx="17" ry="3.2"/>
+<g class="tagg"><rect class="tag" x="24.5" y="25.5" width="29" height="26" rx="2"/><rect class="stripe" x="25.5" y="25.5" width="27" height="3.5"/></g>
+</svg>
+</div>
+          <p class="hiw-kit-note">A screenshot lands on its day like any photo</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Reminders, exactly when: the timeline draws the 7, 3 and 1 day markers before the due date. -->
+<section class="band hiw-timeline" aria-labelledby="rem-title">
+  <div class="wrap spread spread--wide-media hiw-timeline__spread">
+    <div class="hiw-timeline__text">
+      <h2 id="rem-title">Reminders, exactly when</h2>
+      <p>Each bill gets up to three texts before it's due, and you decide which of the three days you want. Keep all of them for the bills that need managing, or just one for the bills that don't. They come as texts to your phone, not as notifications you'd swipe away, and each one carries the amount and the link. On Household, each person's texts go to their own number.</p>
+    </div>
+    <div class="hiw-timeline__track" data-reveal="settle" data-reveal-stagger="0.22">
+      <div class="hiw-timeline__line" aria-hidden="true">
+        <svg class="hiw-timeline__svg" viewBox="0 0 700 170" preserveAspectRatio="none">
+          <path class="draw-path arc" d="M0 150 Q 350 -70 700 150" pathLength="1000"/>
+          <path class="draw-path arc" d="M400 150 Q 550 20 700 150" pathLength="1000"/>
+          <path class="draw-path arc" d="M600 150 Q 650 88 700 150" pathLength="1000"/>
+          <line class="draw-path rule" x1="0" y1="150" x2="700" y2="150" pathLength="1000"/>
+          <line class="tick" x1="0" y1="140" x2="0" y2="160"/>
+          <line class="tick" x1="400" y1="140" x2="400" y2="160"/>
+          <line class="tick" x1="600" y1="140" x2="600" y2="160"/>
+          <circle class="due" cx="700" cy="150" r="7"/>
+        </svg>
+        <span class="settle-num hiw-timeline__num" style="--at: 0">7</span>
+        <span class="settle-num hiw-timeline__num" style="--at: 0.5714">3</span>
+        <span class="settle-num hiw-timeline__num" style="--at: 0.8571">1</span>
+        <span class="hiw-timeline__duelabel">Due <b>Thu Oct 2</b></span>
+      </div>
+      <div class="hiw-timeline__marks">
+        <div class="hiw-mark" data-reveal-item>
+          <span class="settle-num hiw-mark__num" aria-hidden="true">7</span>
+          <p class="hiw-mark__label">7 days before</p>
+          <p>The first text, far enough out to plan around.</p>
+        </div>
+        <div class="hiw-mark" data-reveal-item>
+          <span class="settle-num hiw-mark__num" aria-hidden="true">3</span>
+          <p class="hiw-mark__label">3 days before</p>
+          <p>The middle text, and the default if you only want one.</p>
+        </div>
+        <div class="hiw-mark" data-reveal-item>
+          <span class="settle-num hiw-mark__num" aria-hidden="true">1</span>
+          <p class="hiw-mark__label">1 day before</p>
+          <p>The last text, in case the bill is still open.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Anatomy of a text: leader lines draw from the sample bubble to the six labels. -->
+<section class="band band--oat hiw-anatomy" aria-labelledby="anat-title">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 id="anat-title">Anatomy of a text</h2>
+    </div>
+    <div class="anatomy" id="anatomy" data-reveal="draw-in" data-reveal-stagger="0.1">
+      <svg class="anatomy__lines" id="anatomy-lines" aria-hidden="true"></svg>
+      <div class="anatomy__label anatomy__label--l" data-for="biller" data-reveal-item><h3>Biller</h3><p>The name exactly as you typed it, so "Water bill" means the one you meant.</p></div>
+      <div class="anatomy__label anatomy__label--l" data-for="amount" data-reveal-item><h3>Amount</h3><p>What's due, as you entered it or as read from the paper. Nothing added to it.</p></div>
+      <div class="anatomy__label anatomy__label--l" data-for="date" data-reveal-item><h3>Due date</h3><p>The day with its weekday, because "Thu Oct 2" lands differently than "10/2".</p></div>
+      <div class="anatomy__bubble" data-reveal-item>
+        <div class="bubble" id="anatomy-bubble"><span class="bubble__day">Thu Oct 2</span><span class="bubble__from">Addabill:</span> <mark data-part="biller">Water bill</mark>, <mark data-part="amount">$64.20</mark>, due <mark data-part="date">Thu Oct 2</mark>. Tap to open your utility's payment page: <span class="lnk"><mark data-part="link">[link]</mark></span>. Reply <mark data-part="help">HELP</mark> for help, <mark data-part="stop">STOP</mark> to cancel.</div>
+      </div>
+      <div class="anatomy__label anatomy__label--r" data-for="link" data-reveal-item><h3>Link</h3><p>Opens that biller's own payment page. Their page, your usual login, and we're not in between.</p></div>
+      <div class="anatomy__label anatomy__label--r" data-for="help" data-reveal-item><h3>HELP</h3><p>Reply HELP and you get the support number and email straight back.</p></div>
+      <div class="anatomy__label anatomy__label--r" data-for="stop" data-reveal-item><h3>STOP</h3><p>Reply STOP and the texts end on the spot. Your calendar keeps working.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- The closing band over the atmosphere still. -->
+<section class="band band--flush media-band hiw-cta" aria-labelledby="hiw-cta-title">
+  <div class="grade grade--full hiw-cta__media">
+    <picture>
+      <source type="image/webp" srcset="/assets/atmos-hiw-cta-1200.webp 1200w, /assets/atmos-hiw-cta-2400.webp 2400w" sizes="100vw">
+      <img src="/assets/atmos-hiw-cta-2400.webp" alt="An empty wooden kitchen counter along a cream wall with a small potted herb on the windowsill, morning light falling across it." width="2400" height="1029" loading="lazy" decoding="async">
+    </picture>
+  </div>
+  <div class="wrap hiw-cta__inner">
+    <div class="card hiw-cta__card" data-reveal="rise">
+      <h2 id="hiw-cta-title">Put the first bill on its day tonight. The first text comes before you'd have thought of it.</h2>
+      <div class="cluster">
+        <a class="tag-btn" href="/checkout?plan=household-monthly" data-cart-add="household-monthly"><span class="lbl">Purchase the Household plan</span></a>
+        <p class="small muted hiw-cta__price">$5 a month or $40 a year. No fees on your bills. Cancel any time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer class="footer" id="footer">
+  <section class="year-band" aria-labelledby="year-band-title">
+    <div class="wrap">
+      <p class="h3 no-hover" id="year-band-title">The year at a glance</p>
+      <div class="year-strip" data-reveal="flip-in" data-reveal-stagger="0.06" aria-hidden="true"><div class="mini-month" data-reveal-item data-month="1"><div class="mm-name"><span>January</span></div><div class="mm-grid"><i class="pad"></i><i class="pad"></i><i class="pad"></i><i class="pad"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div><div class="mini-month" data-reveal-item data-month="2"><div class="mm-name"><span>February</span></div><div class="mm-grid"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div><div class="mini-month" data-reveal-item data-month="3"><div class="mm-name"><span>March</span></div><div class="mm-grid"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="pad"></i><i class="pad"></i><i class="pad"></i><i class="pad"></i></div></div><div class="mini-month" data-reveal-item data-month="4"><div class="mm-name"><span>April</span></div><div class="mm-grid"><i class="pad"></i><i class="pad"></i><i class="pad"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="pad"></i><i class="pad"></i></div></div><div class="mini-month" data-reveal-item data-month="5"><div class="mm-name"><span>May</span></div><div class="mm-grid"><i class="pad"></i><i class="pad"></i><i class="pad"></i><i class="pad"></i><i class="pad"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="pad"></i><i class="pad"></i><i class="pad"></i><i class="pad"></i><i class="pad"></i><i class="pad"></i></div></div><div class="mini-month" data-reveal-item data-month="6"><div class="mm-name"><span>June</span></div><div class="mm-grid"><i class="pad"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="pad"></i><i class="pad"></i><i class="pad"></i><i class="pad"></i></div></div><div class="mini-month" data-reveal-item data-month="7"><div class="mm-name"><span>July</span></div><div class="mm-grid"><i class="pad"></i><i class="pad"></i><i class="pad"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="pad"></i></div></div><div class="mini-month" data-reveal-item data-month="8"><div class="mm-name"><span>August</span></div><div class="mm-grid"><i class="pad"></i><i class="pad"></i><i class="pad"></i><i class="pad"></i><i class="pad"></i><i class="pad"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="pad"></i><i class="pad"></i><i class="pad"></i><i class="pad"></i><i class="pad"></i></div></div><div class="mini-month is-current" data-reveal-item data-month="9"><div class="mm-name"><span>September</span></div><div class="mm-grid"><i class="pad"></i><i class="pad"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="today"></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="pad"></i><i class="pad"></i><i class="pad"></i></div></div><div class="mini-month" data-reveal-item data-month="10"><div class="mm-name"><span>October</span></div><div class="mm-grid"><i class="pad"></i><i class="pad"></i><i class="pad"></i><i class="pad"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div><div class="mini-month" data-reveal-item data-month="11"><div class="mm-name"><span>November</span></div><div class="mm-grid"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="pad"></i><i class="pad"></i><i class="pad"></i><i class="pad"></i><i class="pad"></i></div></div><div class="mini-month" data-reveal-item data-month="12"><div class="mm-name"><span>December</span></div><div class="mm-grid"><i class="pad"></i><i class="pad"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="pad"></i><i class="pad"></i></div></div></div>
+    </div>
+  </section>
+  <div class="wrap footer-cols" data-reveal="fade-up" data-reveal-stagger="0.08">
+    <div class="footer-brand" data-reveal-item>
+      <a href="/" aria-label="Addabill, home"><img class="wordmark" src="/assets/logo-wordmark.svg" alt="Addabill" width="124" height="30" loading="lazy" decoding="async"></a>
+      <svg class="k-seal" viewBox="0 0 240 240" width="132" height="132" role="img" aria-label="Addabill month seal: every bill on its day">
+<circle class="ring r1" cx="120" cy="120" r="118" stroke-width="1.2"/>
+<circle class="ring r2" cx="120" cy="120" r="112" stroke-width="0.8"/>
+<defs><path id="seal-top" d="M 30 120 A 90 90 0 0 1 210 120"/><path id="seal-bot" d="M 26 120 A 94 94 0 0 0 214 120"/></defs>
+<text class="t"><textPath href="#seal-top" startOffset="50%" text-anchor="middle">ADDABILL</textPath></text>
+<text class="t t2" font-size="10.5"><textPath href="#seal-bot" startOffset="50%" text-anchor="middle">EVERY BILL ON ITS DAY</textPath></text>
+<circle class="d" cx="69.60" cy="84.00" r="2.2" style="--i:0"/>
+<circle class="d" cx="86.40" cy="84.00" r="2.2" style="--i:1"/>
+<circle class="d" cx="103.20" cy="84.00" r="2.2" style="--i:2"/>
+<circle class="d" cx="120.00" cy="84.00" r="2.2" style="--i:3"/>
+<circle class="d on" cx="136.80" cy="84.00" r="3.2" style="--i:4"/>
+<circle class="d" cx="153.60" cy="84.00" r="2.2" style="--i:5"/>
+<circle class="d" cx="170.40" cy="84.00" r="2.2" style="--i:6"/>
+<circle class="d" cx="69.60" cy="102.00" r="2.2" style="--i:7"/>
+<circle class="d" cx="86.40" cy="102.00" r="2.2" style="--i:8"/>
+<circle class="d" cx="103.20" cy="102.00" r="2.2" style="--i:9"/>
+<circle class="d" cx="120.00" cy="102.00" r="2.2" style="--i:10"/>
+<circle class="d" cx="136.80" cy="102.00" r="2.2" style="--i:11"/>
+<circle class="d" cx="153.60" cy="102.00" r="2.2" style="--i:12"/>
+<circle class="d" cx="170.40" cy="102.00" r="2.2" style="--i:13"/>
+<circle class="d" cx="69.60" cy="120.00" r="2.2" style="--i:14"/>
+<circle class="d" cx="86.40" cy="120.00" r="2.2" style="--i:15"/>
+<circle class="d" cx="103.20" cy="120.00" r="2.2" style="--i:16"/>
+<circle class="d" cx="120.00" cy="120.00" r="2.2" style="--i:17"/>
+<circle class="d" cx="136.80" cy="120.00" r="2.2" style="--i:18"/>
+<circle class="d" cx="153.60" cy="120.00" r="2.2" style="--i:19"/>
+<circle class="d" cx="170.40" cy="120.00" r="2.2" style="--i:20"/>
+<circle class="d" cx="69.60" cy="138.00" r="2.2" style="--i:21"/>
+<circle class="d" cx="86.40" cy="138.00" r="2.2" style="--i:22"/>
+<circle class="d" cx="103.20" cy="138.00" r="2.2" style="--i:23"/>
+<circle class="d" cx="120.00" cy="138.00" r="2.2" style="--i:24"/>
+<circle class="d" cx="136.80" cy="138.00" r="2.2" style="--i:25"/>
+<circle class="d" cx="153.60" cy="138.00" r="2.2" style="--i:26"/>
+<circle class="d" cx="170.40" cy="138.00" r="2.2" style="--i:27"/>
+<circle class="d" cx="69.60" cy="156.00" r="2.2" style="--i:28"/>
+<circle class="d" cx="86.40" cy="156.00" r="2.2" style="--i:29"/>
+<circle class="d" cx="103.20" cy="156.00" r="2.2" style="--i:30"/>
+<circle class="d" cx="120.00" cy="156.00" r="2.2" style="--i:31"/>
+<circle class="d" cx="136.80" cy="156.00" r="2.2" style="--i:32"/>
+<circle class="d" cx="153.60" cy="156.00" r="2.2" style="--i:33"/>
+<circle class="d" cx="170.40" cy="156.00" r="2.2" style="--i:34"/>
+</svg>
+
+      <p class="tagline">For whoever keeps the bills at your place.</p>
+    </div>
+    <nav aria-label="Pages" data-reveal-item>
+      <h3>Pages</h3>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/how-it-works">How it works</a></li>
+        <li><a href="/plans">Plans</a></li>
+        <li><a href="/builder">Build your month</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/contact">Contact</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Plans" data-reveal-item>
+      <h3>Plans</h3>
+      <ul>
+        <li><a href="/plans#free">Free</a></li>
+        <li><a href="/plans#household">Household</a></li>
+        <li><a href="/checkout?plan=household-monthly" data-cart-add="household-monthly">Purchase the Household plan</a></li>
+        <li><a href="/cart">Cart</a></li>
+      </ul>
+    </nav>
+    <div class="footer-legal" data-reveal-item>
+      <h3>Addabill Inc.</h3>
+      <address>
+        <span class="org">Addabill Inc.</span>
+        4201 Spring Valley Rd, Dallas, TX 75244<br>
+        <a href="tel:+18883389070">(888) 338-9070</a><br>
+        <a href="mailto:support@addabill.com">support@addabill.com</a>
+      </address>
+      <ul class="u-mt-4">
+        <li><a href="/terms-of-service">Terms of Service</a></li>
+        <li><a href="/privacy-policy">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <section class="sms-band" aria-labelledby="sms-heading">
+    <div class="wrap sms-block" data-reveal="fade-up">
+      <div class="sms-block__head">
+  <h2 class="no-hover" id="sms-heading">Join Our SMS List</h2>
+  <svg class="div div--reminder" viewBox="0 0 320 44" width="320" height="44" aria-hidden="true">
+<path class="draw-path" d="M20 40 Q 150 -30 300 38" pathLength="1000"/>
+<path class="draw-path" d="M110 40 Q 205 -6 300 38" pathLength="1000"/>
+<path class="draw-path" d="M200 40 Q 250 14 300 38" pathLength="1000"/>
+<circle cx="300" cy="38" r="4.5"/>
+<line x1="20" y1="34" x2="20" y2="44" stroke="var(--graphite)" stroke-width="1"/><line x1="110" y1="34" x2="110" y2="44" stroke="var(--graphite)" stroke-width="1"/><line x1="200" y1="34" x2="200" y2="44" stroke="var(--graphite)" stroke-width="1"/>
+</svg>
+
+</div>
+<form class="form" data-sms-form novalidate action="/" method="post" aria-labelledby="sms-heading">
+  <div class="field">
+    <label for="sms-phone">Phone number <span class="req">required</span></label>
+    <input class="input" id="sms-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="Your Phone Number" required>
+  </div>
+  <div class="checks">
+    <div class="field">
+      <label class="check" for="sms-terms"><input type="checkbox" name="sms-terms" id="sms-terms" required><span>I agree to the <a href="/terms-of-service">Terms</a> &amp; <a href="/privacy-policy">Privacy Policy</a></span></label>
+    </div>
+    <div class="field">
+      <label class="check" for="sms-consent"><input type="checkbox" name="sms-consent" id="sms-consent" required><span>I agree to receive SMS marketing notifications from Addabill. Reply HELP for help or call/email (888) 338-9070 / support@addabill.com STOP to cancel. Msg &amp; data rates may apply. Msg frequency varies. Information gathered in the SMS campaign will not be shared with third parties or affiliates for marketing purposes. Read our <a href="/terms-of-service">Terms</a> and <a href="/privacy-policy">Privacy Policy</a>.</span></label>
+    </div>
+  </div>
+  <div data-summary-before hidden></div>
+  <div><button class="tag-btn" type="submit"><span class="lbl">Submit</span></button></div>
+</form>
+
+    </div>
+  </section>
+  <div class="copyright"><div class="wrap">&copy; 2026 Addabill Inc. All rights reserved.</div></div>
+</footer>
+
+<div class="drawer-scrim" id="cart-scrim" data-cart-close></div>
+<aside class="drawer" id="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title" aria-hidden="true">
+  <div class="drawer__head">
+    <h2 class="no-hover" id="cart-title">Your cart</h2>
+    <button class="drawer__close" type="button" data-cart-close aria-label="Close the cart"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-close"/></svg></button>
+  </div>
+  <p class="cart-note" id="cart-note" aria-live="polite"></p>
+  <div class="drawer__body" id="cart-body"></div>
+  <div class="drawer__foot" id="cart-foot"></div>
+</aside>
+
+<script src="/assets/vendor/gsap.min.js" defer></script>
+<script src="/assets/vendor/ScrollTrigger.min.js" defer></script>
+<script src="/assets/vendor/Flip.min.js" defer></script>
+<script src="/assets/js/core.js" defer></script>
+<script src="/assets/js/cart.js" defer></script>
+<script src="/assets/js/sms.js" defer></script>
+<script src="/assets/js/scene-lite.js" defer></script>
+<script src="/assets/js/pages/how-it-works.js" defer></script>
+</body>
+</html>
