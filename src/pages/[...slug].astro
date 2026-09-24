@@ -1,0 +1,23 @@
+---
+export const prerender = false;
+// Every assembled page is bundled as a raw string at build time and served from this one
+// server rendered route. Pages live flat in src/site_flat: index.html is "/", plans.html is
+// "/plans/", and blog--slug.html is "/blog/slug/". Unknown paths get the designed 404 page
+// WITH a 404 status. Trailing slashes are normalized so /plans and /plans/ are the same page.
+const files = import.meta.glob('../site_flat/*.html', { query: '?raw', import: 'default', eager: true });
+const map = {};
+for (const p in files) {
+  const name = p.split('/').pop().replace(/\.html$/, '');
+  const route = name === 'index' ? '/' : '/' + name.split('--').join('/') + '/';
+  map[route] = files[p];
+}
+let path = new URL(Astro.request.url).pathname;
+if (!path.endsWith('/')) path += '/';
+path = path.replace(/\/{2,}/g, '/');
+const hit = Object.prototype.hasOwnProperty.call(map, path) && path !== '/404/';
+const html = hit ? map[path] : (map['/404/'] || map['/']);
+return new Response(html, {
+  status: hit ? 200 : 404,
+  headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': hit ? 'public, max-age=0, must-revalidate' : 'no-store' }
+});
+---
