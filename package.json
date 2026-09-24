@@ -1,0 +1,17 @@
+{
+  "name": "addabill-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Addabill (addabill.com) marketing site and store. Static pages assembled by build/assemble.py, served through an Astro server rendered catch-all for Webflow Cloud.",
+  "scripts": {
+    "assemble": "python3 build/assemble.py",
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "^14.3.3",
+    "astro": "^7.3.5"
+  }
+}
