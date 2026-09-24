@@ -1,0 +1,118 @@
+/* Addabill site tokens. Same values as assets/product-ui/tokens.css (the product screens),
+   so the site and the app are one system. Every transition on the site uses the two
+   named easings and the three durations declared here. */
+
+@font-face {
+  font-family: 'Fraunces';
+  src: url('/assets/fonts/fraunces-latin-full-normal.woff2') format('woff2');
+  font-weight: 100 900;
+  font-stretch: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Fraunces';
+  src: url('/assets/fonts/fraunces-latin-full-italic.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Figtree';
+  src: url('/assets/fonts/figtree-latin-wght-normal.woff2') format('woff2');
+  font-weight: 300 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Figtree';
+  src: url('/assets/fonts/figtree-latin-wght-italic.woff2') format('woff2');
+  font-weight: 300 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Registered custom properties so GSAP and CSS transitions can tween the Fraunces axes
+   (the Settled Numeral set piece) and the reveal clip values. */
+@property --wonk { syntax: '<number>'; inherits: true; initial-value: 0; }
+@property --opsz { syntax: '<number>'; inherits: true; initial-value: 144; }
+@property --soft { syntax: '<number>'; inherits: true; initial-value: 100; }
+@property --wght { syntax: '<number>'; inherits: true; initial-value: 600; }
+@property --lift { syntax: '<length>'; inherits: false; initial-value: 0px; }
+
+:root {
+  /* Palette (Section 5). Marigold is never text on cream. Moss is for paid checks only. */
+  --cream: #FAF3E6;
+  --paper: #FFFFFF;
+  --oat: #EDE2CF;
+  --graphite: #2B2622;
+  --shadow: #6B6058;
+  --marigold: #E9A825;
+  --moss: #3F6B4B;
+  --hair: rgba(43, 38, 34, 0.18);
+  --hair-soft: rgba(43, 38, 34, 0.10);
+  --hair-strong: rgba(43, 38, 34, 0.32);
+  --marigold-soft: rgba(233, 168, 37, 0.22);
+
+  /* The two shadow tokens (TEX-013) and the tag contact shadow from the product tokens. */
+  --shadow-1: 0 1px 2px rgba(43, 38, 34, 0.06), 0 6px 18px rgba(43, 38, 34, 0.08);
+  --shadow-2: 0 2px 4px rgba(43, 38, 34, 0.06), 0 14px 32px rgba(43, 38, 34, 0.12);
+  --tag-shadow: 0 1px 1px rgba(43, 38, 34, 0.08), 0 3px 6px rgba(43, 38, 34, 0.10);
+
+  /* Type */
+  --ui: 'Figtree', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --display: 'Fraunces', Georgia, 'Times New Roman', serif;
+
+  /* Fluid type scale (TYP-004). Every step keeps a rem term so browser zoom works. */
+  --fs-xs: clamp(0.78rem, 0.74rem + 0.18vw, 0.875rem);
+  --fs-sm: clamp(0.875rem, 0.83rem + 0.2vw, 0.975rem);
+  --fs-body: clamp(1rem, 0.94rem + 0.28vw, 1.125rem);
+  --fs-lead: clamp(1.125rem, 1rem + 0.55vw, 1.4rem);
+  --fs-h4: clamp(1.15rem, 1.05rem + 0.5vw, 1.5rem);
+  --fs-h3: clamp(1.35rem, 1.1rem + 1.1vw, 2rem);
+  --fs-h2: clamp(1.8rem, 1.2rem + 2.4vw, 3.4rem);
+  --fs-h1: clamp(2.25rem, 1.2rem + 4.2vw, 5.5rem);
+  --fs-numeral: clamp(4rem, 2rem + 9vw, 11rem);
+  --fs-price: clamp(2.6rem, 1.6rem + 3.6vw, 5rem);
+
+  /* Fluid spacing */
+  --sp-1: clamp(0.25rem, 0.2rem + 0.2vw, 0.4rem);
+  --sp-2: clamp(0.5rem, 0.4rem + 0.35vw, 0.75rem);
+  --sp-3: clamp(0.75rem, 0.6rem + 0.6vw, 1.125rem);
+  --sp-4: clamp(1rem, 0.8rem + 0.9vw, 1.6rem);
+  --sp-5: clamp(1.5rem, 1.1rem + 1.6vw, 2.5rem);
+  --sp-6: clamp(2rem, 1.4rem + 2.6vw, 4rem);
+  --sp-7: clamp(3rem, 2rem + 4.2vw, 6rem);
+  --sp-8: clamp(4rem, 2.6rem + 6vw, 8.5rem);
+  --band-y: clamp(3.5rem, 2.4rem + 5vw, 7.5rem);
+
+  /* Full width layout system (the fill the page addendum, 2026-09-24). */
+  --gutter: clamp(16px, 3vw, 56px);
+  --wrap-max: max(1720px, 86vw);
+  --measure: 65ch;
+  --header-h: 72px;
+  --header-h-condensed: 56px;
+
+  /* Motion signature: two curves, three durations. Nothing else is used. */
+  --ease-headsup: cubic-bezier(0.24, 0.8, 0.26, 1);
+  --ease-pageturn: cubic-bezier(0.42, 0, 0.14, 1);
+  --t-fast: 0.2s;
+  --t-base: 0.48s;
+  --t-slow: 1.4s;
+
+  /* Radii */
+  --r-tag: 6px;
+  --r-card: 10px;
+  --r-cell: 4px;
+
+  /* Grade recipe "morning counter" (Section 5): full for the hero loop and atmosphere
+     stills, light for photography, none for product imagery and the kit. */
+  --grade-full: grayscale(0.3) sepia(0.32) hue-rotate(-6deg) saturate(1.2) contrast(1.05) brightness(1.04);
+  --grade-light: grayscale(0.15) sepia(0.16) hue-rotate(-3deg) saturate(1.1) contrast(1.02) brightness(1.02);
+
+  color-scheme: light;
+}
+
+/* Wide monitors (the fill the page addendum): the whole rem scale grows with the screen so text rich
+   sections are composed for the width they get instead of shrinking into the middle. Every clamp() keeps
+   its rem term, so this lifts type, spacing and the 65ch measure together; px widths (wrap, gutter) do not move. */
+@media (min-width: 1920px) { html { font-size: 112.5%; } }
+@media (min-width: 2400px) { html { font-size: 125%; } }
