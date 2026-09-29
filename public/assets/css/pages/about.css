@@ -100,3 +100,12 @@
 .about-cta__actions { display: grid; gap: var(--sp-3); justify-items: start; }
 @media (min-width: 900px) { .about-cta__actions { justify-items: end; text-align: right; } }
 .about-cta__actions p { margin: 0; }
+
+/* Written about Addabill */
+.about-press h2 { margin-top: var(--sp-2); }
+.about-press__grid { list-style: none; padding: 0; margin: var(--sp-5) 0 0; --cols: 1; --cols-md: 2; --cols-lg: 4; }
+.about-press__item { display: flex; flex-direction: column; gap: var(--sp-2); }
+.about-press__pub { color: var(--shadow); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; margin: 0; }
+.about-press__title { margin: 0; font-size: var(--fs-h4); line-height: 1.3; }
+.about-press__link::before { content: ''; position: absolute; inset: 0; }
+.about-press__item { position: relative; }
