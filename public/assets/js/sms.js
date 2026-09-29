@@ -1,4 +1,4 @@
-/* Addabill sms.js. Validation and the success state for the verbatim "Join Our SMS List"
+/* Addabill sms.js. Validation and the success state for the verbatim "Get Bill Reminder Texts"
    block in the footer (design doc Section 6). Errors appear beneath their control and in a
    summary above the button, never while typing. Success replaces the form with a paper tag
    stamping in, announced by aria-live. No real send is made. */
@@ -39,7 +39,7 @@
         var wrap = form.parentNode, box = doc.createElement('div');
         box.className = 'sms-success';
         wrap.replaceChild(box, form);
-        window.AB.stamp(box, "You're on the list. Reply HELP for help, STOP to cancel.", { check: true, announce: true });
+        window.AB.stamp(box, "You're set for account texts. Reply HELP for help, STOP to cancel.", { check: true, announce: true });
       }, window.AB && window.AB.motion.rm ? 50 : 480);
     });
   }
