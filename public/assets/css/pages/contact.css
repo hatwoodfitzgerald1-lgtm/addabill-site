@@ -91,3 +91,5 @@
   .contact-map .map-labels text { font-size: 19px; }
   .contact-map .map-labels .map-label--big { font-size: 30px; }
 }
+.contact-card__elsewhere { margin: var(--sp-3) 0 0; color: var(--shadow); }
+.contact-card__elsewhere a { color: var(--graphite); font-weight: 600; }
